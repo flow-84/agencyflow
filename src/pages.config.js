@@ -14,6 +14,7 @@ import MyDocuments from './pages/MyDocuments';
 import Settings from './pages/Settings';
 import Apply from './pages/Apply';
 import Welcome from './pages/Welcome';
+import TrainingCourse from './pages/TrainingCourse';
 import __Layout from './Layout.jsx';
 
 
@@ -34,6 +35,7 @@ export const PAGES = {
     "Settings": Settings,
     "Apply": Apply,
     "Welcome": Welcome,
+    "TrainingCourse": TrainingCourse,
 }
 
 export const pagesConfig = {
