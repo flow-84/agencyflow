@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { createPageUrl } from "@/utils";
-import { MessageCircle, Camera, ArrowRight, CheckCircle } from "lucide-react";
+import { MessageCircle, Camera, ArrowRight, CheckCircle, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
 export default function SelectRole() {
   const [selectedRole, setSelectedRole] = useState(null);
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   const { data: user, isLoading } = useQuery({
     queryKey: ['currentUser'],
@@ -18,6 +19,7 @@ export default function SelectRole() {
   // If user already has a role, redirect
   useEffect(() => {
     if (user?.user_role) {
+      setIsRedirecting(true);
       if (user.user_role === 'model') {
         window.location.href = createPageUrl('ModelDashboard');
       } else if (user.user_role === 'chatter') {
@@ -25,6 +27,7 @@ export default function SelectRole() {
       }
     }
     if (user?.role === 'admin') {
+      setIsRedirecting(true);
       window.location.href = createPageUrl('Dashboard');
     }
   }, [user]);
@@ -46,7 +49,7 @@ export default function SelectRole() {
     }
   };
 
-  if (isLoading) {
+  if (isLoading || isRedirecting) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-violet-900 to-slate-900 flex items-center justify-center">
         <div className="animate-spin w-10 h-10 border-4 border-violet-500 border-t-transparent rounded-full" />
@@ -74,7 +77,11 @@ export default function SelectRole() {
             Willkommen, {user?.full_name}!
           </h1>
           <p className="text-slate-300 text-lg">
-            Wähle deine Rolle, um fortzufahren
+            Als was möchtest du dich registrieren?
+          </p>
+          <p className="text-amber-400 text-sm mt-2 flex items-center justify-center gap-2">
+            <Clock className="w-4 h-4" />
+            Diese Auswahl kann später nicht geändert werden
           </p>
         </div>
 
