@@ -16,6 +16,7 @@ import Apply from './pages/Apply';
 import Welcome from './pages/Welcome';
 import TrainingCourse from './pages/TrainingCourse';
 import TeamChat from './pages/TeamChat';
+import SelectRole from './pages/SelectRole';
 import __Layout from './Layout.jsx';
 
 
@@ -38,6 +39,7 @@ export const PAGES = {
     "Welcome": Welcome,
     "TrainingCourse": TrainingCourse,
     "TeamChat": TeamChat,
+    "SelectRole": SelectRole,
 }
 
 export const pagesConfig = {

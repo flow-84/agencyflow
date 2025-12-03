@@ -27,12 +27,15 @@ export default function Welcome() {
         if (isAuth) {
           const user = await base44.auth.me();
           // Redirect based on role
-          if (user.role === 'admin' || user.user_role === 'admin') {
+          if (user.role === 'admin') {
             window.location.href = createPageUrl('Dashboard');
           } else if (user.user_role === 'model') {
             window.location.href = createPageUrl('ModelDashboard');
-          } else {
+          } else if (user.user_role === 'chatter') {
             window.location.href = createPageUrl('ChatterDashboard');
+          } else {
+            // New user without role - redirect to role selection
+            window.location.href = createPageUrl('SelectRole');
           }
         } else {
           setIsChecking(false);
