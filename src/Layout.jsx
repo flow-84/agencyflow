@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { createPageUrl } from "./utils";
+import { createPageUrl } from "@/utils";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
 import {
@@ -37,10 +37,43 @@ export default function Layout({ children, currentPageName }) {
     queryFn: () => base44.auth.me(),
   });
 
-  const userRole = user?.user_role || 'chatter';
-  const isAdmin = user?.role === 'admin' || userRole === 'admin';
+  const userRole = user?.user_role;
+  const isAdmin = user?.role === 'admin';
   const isModel = userRole === 'model';
   const isChatter = userRole === 'chatter';
+  const hasNoRole = !isAdmin && !isModel && !isChatter;
+
+  // Redirect users without role to SelectRole page
+  useEffect(() => {
+    if (user && hasNoRole && currentPageName !== "SelectRole" && currentPageName !== "Apply" && currentPageName !== "Welcome") {
+      window.location.href = createPageUrl('SelectRole');
+    }
+  }, [user, hasNoRole, currentPageName]);
+
+  // Protect pages based on role
+  const allowedPages = {
+    admin: ["Dashboard", "Applications", "Users", "Shifts", "Models", "Training", "Documents", "Settings"],
+    chatter: ["ChatterDashboard", "MyShifts", "MyTraining", "TrainingCourse", "Settings"],
+    model: ["ModelDashboard", "MyProfile", "MyDocuments", "TeamChat", "Settings"],
+  };
+
+  useEffect(() => {
+    if (user && !hasNoRole && currentPageName !== "Apply" && currentPageName !== "Welcome" && currentPageName !== "SelectRole") {
+      const role = isAdmin ? 'admin' : (isChatter ? 'chatter' : 'model');
+      const allowed = allowedPages[role] || [];
+      
+      if (!allowed.includes(currentPageName)) {
+        // Redirect to correct dashboard
+        if (isAdmin) {
+          window.location.href = createPageUrl('Dashboard');
+        } else if (isChatter) {
+          window.location.href = createPageUrl('ChatterDashboard');
+        } else if (isModel) {
+          window.location.href = createPageUrl('ModelDashboard');
+        }
+      }
+    }
+  }, [user, currentPageName, isAdmin, isChatter, isModel, hasNoRole]);
 
   const getNavItems = () => {
     const items = [];
@@ -74,6 +107,17 @@ export default function Layout({ children, currentPageName }) {
   };
 
   const navItems = getNavItems();
+
+  // Show loading while checking role
+  if (!user || hasNoRole) {
+    if (currentPageName !== "Apply" && currentPageName !== "Welcome" && currentPageName !== "SelectRole") {
+      return (
+        <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+          <div className="animate-spin w-8 h-8 border-4 border-violet-600 border-t-transparent rounded-full" />
+        </div>
+      );
+    }
+  }
 
   const handleLogout = () => {
     base44.auth.logout();
@@ -168,7 +212,7 @@ export default function Layout({ children, currentPageName }) {
                   <p className="text-sm font-medium text-slate-900 truncate">
                     {user?.full_name || 'Nutzer'}
                   </p>
-                  <p className="text-xs text-slate-500 capitalize">{userRole}</p>
+                  <p className="text-xs text-slate-500 capitalize">{userRole || 'Nutzer'}</p>
                 </div>
                 <ChevronDown className="w-4 h-4 text-slate-400" />
               </button>
