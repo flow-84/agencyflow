@@ -66,6 +66,7 @@ export default function Layout({ children, currentPageName }) {
         { name: "Übersicht", icon: LayoutDashboard, page: "ModelDashboard" },
         { name: "Mein Profil", icon: UserCircle, page: "MyProfile" },
         { name: "Dokumente", icon: FileText, page: "MyDocuments" },
+        { name: "Team Chat", icon: Users, page: "TeamChat" },
       );
     }
     
@@ -78,8 +79,8 @@ export default function Layout({ children, currentPageName }) {
     base44.auth.logout();
   };
 
-  if (currentPageName === "Apply") {
-    return <div className="min-h-screen bg-slate-50">{children}</div>;
+  if (currentPageName === "Apply" || currentPageName === "Welcome") {
+    return <>{children}</>;
   }
 
   return (
