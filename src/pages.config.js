@@ -13,6 +13,7 @@ import MyProfile from './pages/MyProfile';
 import MyDocuments from './pages/MyDocuments';
 import Settings from './pages/Settings';
 import Apply from './pages/Apply';
+import Welcome from './pages/Welcome';
 import __Layout from './Layout.jsx';
 
 
@@ -32,6 +33,7 @@ export const PAGES = {
     "MyDocuments": MyDocuments,
     "Settings": Settings,
     "Apply": Apply,
+    "Welcome": Welcome,
 }
 
 export const pagesConfig = {
