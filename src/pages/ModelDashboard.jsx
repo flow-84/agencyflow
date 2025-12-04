@@ -46,7 +46,7 @@ export default function ModelDashboard() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -71,24 +71,24 @@ export default function ModelDashboard() {
         } text-white`}>
           <CardContent className="p-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 sm:gap-4">
                 {profile?.profile_image_url ? (
                   <img
                     src={profile.profile_image_url}
                     alt={profile.display_name}
-                    className="w-16 h-16 rounded-full object-cover ring-4 ring-white/30"
+                    className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover ring-4 ring-white/30 flex-shrink-0"
                   />
                 ) : (
-                  <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
-                    <UserCircle className="w-8 h-8" />
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                    <UserCircle className="w-6 h-6 sm:w-8 sm:h-8" />
                   </div>
                 )}
-                <div>
-                  <h2 className="text-xl font-bold">{profile?.display_name || 'Profil erstellen'}</h2>
+                <div className="min-w-0">
+                  <h2 className="text-lg sm:text-xl font-bold truncate">{profile?.display_name || 'Profil erstellen'}</h2>
                   {profile?.onlyfans_username && (
-                    <p className="text-white/80">@{profile.onlyfans_username}</p>
+                    <p className="text-white/80 text-sm truncate">@{profile.onlyfans_username}</p>
                   )}
-                  <Badge className={`mt-2 ${
+                  <Badge className={`mt-1 sm:mt-2 ${
                     profile?.status === 'active' ? 'bg-white/20' : 'bg-white/20'
                   }`}>
                     {profile?.status === 'active' ? 'Aktiv' : 
@@ -96,8 +96,8 @@ export default function ModelDashboard() {
                   </Badge>
                 </div>
               </div>
-              <Link to={createPageUrl("MyProfile")}>
-                <Button className="bg-white/20 hover:bg-white/30 text-white">
+              <Link to={createPageUrl("MyProfile")} className="w-full sm:w-auto">
+                <Button className="bg-white/20 hover:bg-white/30 text-white w-full sm:w-auto">
                   Profil bearbeiten
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
@@ -267,30 +267,30 @@ export default function ModelDashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-3 gap-6">
-                <div className="text-center p-4 bg-pink-50 rounded-xl">
-                  <Users className="w-6 h-6 text-pink-600 mx-auto mb-2" />
-                  <p className="text-2xl font-bold text-slate-900">
-                    {profile.onlyfans_stats.subscribers?.toLocaleString() || '-'}
-                  </p>
-                  <p className="text-sm text-slate-500">Abonnenten</p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                  <div className="text-center p-3 sm:p-4 bg-pink-50 rounded-xl">
+                    <Users className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600 mx-auto mb-2" />
+                    <p className="text-xl sm:text-2xl font-bold text-slate-900">
+                      {profile.onlyfans_stats.subscribers?.toLocaleString() || '-'}
+                    </p>
+                    <p className="text-xs sm:text-sm text-slate-500">Abonnenten</p>
+                  </div>
+                  <div className="text-center p-3 sm:p-4 bg-emerald-50 rounded-xl">
+                    <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 mx-auto mb-2" />
+                    <p className="text-xl sm:text-2xl font-bold text-slate-900">
+                      ${profile.onlyfans_stats.earnings?.toLocaleString() || '-'}
+                    </p>
+                    <p className="text-xs sm:text-sm text-slate-500">Umsatz</p>
+                  </div>
+                  <div className="text-center p-3 sm:p-4 bg-violet-50 rounded-xl">
+                    <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-violet-600 mx-auto mb-2" />
+                    <p className="text-xl sm:text-2xl font-bold text-slate-900">
+                      {profile.onlyfans_stats.posts || '-'}
+                    </p>
+                    <p className="text-xs sm:text-sm text-slate-500">Posts</p>
+                  </div>
                 </div>
-                <div className="text-center p-4 bg-emerald-50 rounded-xl">
-                  <TrendingUp className="w-6 h-6 text-emerald-600 mx-auto mb-2" />
-                  <p className="text-2xl font-bold text-slate-900">
-                    ${profile.onlyfans_stats.earnings?.toLocaleString() || '-'}
-                  </p>
-                  <p className="text-sm text-slate-500">Umsatz</p>
-                </div>
-                <div className="text-center p-4 bg-violet-50 rounded-xl">
-                  <FileText className="w-6 h-6 text-violet-600 mx-auto mb-2" />
-                  <p className="text-2xl font-bold text-slate-900">
-                    {profile.onlyfans_stats.posts || '-'}
-                  </p>
-                  <p className="text-sm text-slate-500">Posts</p>
-                </div>
-              </div>
-            </CardContent>
+              </CardContent>
           </Card>
         </motion.div>
       )}

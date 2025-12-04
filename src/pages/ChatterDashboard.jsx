@@ -61,7 +61,7 @@ export default function ChatterDashboard() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -211,13 +211,13 @@ export default function ChatterDashboard() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-3 bg-emerald-50 rounded-xl">
-                  <p className="text-2xl font-bold text-emerald-600">{completedTrainings}</p>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div className="text-center p-2 sm:p-3 bg-emerald-50 rounded-xl">
+                  <p className="text-xl sm:text-2xl font-bold text-emerald-600">{completedTrainings}</p>
                   <p className="text-xs text-slate-500">Abgeschlossen</p>
                 </div>
-                <div className="text-center p-3 bg-slate-50 rounded-xl">
-                  <p className="text-2xl font-bold text-slate-900">{totalTrainings - completedTrainings}</p>
+                <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-xl">
+                  <p className="text-xl sm:text-2xl font-bold text-slate-900">{totalTrainings - completedTrainings}</p>
                   <p className="text-xs text-slate-500">Ausstehend</p>
                 </div>
               </div>
