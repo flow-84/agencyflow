@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { FileText, Download, Eye, CheckCircle, Clock, AlertCircle } from "lucide-react";
+import { FileText, Download, CheckCircle, Clock, AlertCircle, PenTool } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
+import SignatureDialog from "@/components/documents/SignatureDialog";
 
 export default function MyDocuments() {
   const queryClient = useQueryClient();
+  const [selectedDoc, setSelectedDoc] = useState(null);
+  const [signDialogOpen, setSignDialogOpen] = useState(false);
 
   const { data: user } = useQuery({
     queryKey: ['currentUser'],
@@ -23,21 +26,59 @@ export default function MyDocuments() {
     enabled: !!user?.email,
   });
 
-  const updateMutation = useMutation({
+  const { data: profile } = useQuery({
+    queryKey: ['myProfile', user?.email],
+    queryFn: async () => {
+      const profiles = await base44.entities.ModelProfile.filter({ user_email: user?.email });
+      return profiles[0];
+    },
+    enabled: !!user?.email,
+  });
+
+  const updateDocMutation = useMutation({
     mutationFn: ({ id, data }) => base44.entities.Document.update(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['myDocs'] });
     },
   });
 
-  const handleSign = (doc) => {
-    updateMutation.mutate({
+  const updateProfileMutation = useMutation({
+    mutationFn: (data) => base44.entities.ModelProfile.update(profile.id, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['myProfile'] });
+    },
+  });
+
+  const handleSign = async (doc, signatureDataUrl) => {
+    // Upload signature as image
+    const response = await fetch(signatureDataUrl);
+    const blob = await response.blob();
+    const file = new File([blob], "signature.png", { type: "image/png" });
+    
+    const { file_url: signatureUrl } = await base44.integrations.Core.UploadFile({ file });
+    
+    // Update document with signature
+    await updateDocMutation.mutateAsync({
       id: doc.id,
       data: {
         is_signed: true,
         signed_at: new Date().toISOString(),
+        signature_url: signatureUrl,
       },
     });
+
+    // Update ModelProfile contract_signed if this is a contract
+    if (doc.type === 'contract' && profile) {
+      await updateProfileMutation.mutateAsync({
+        contract_signed: true,
+        contract_url: doc.file_url,
+      });
+    }
+  };
+
+  const openSignDialog = (doc) => {
+    setSelectedDoc(doc);
+    setSignDialogOpen(true);
   };
 
   const typeConfig = {
@@ -119,24 +160,14 @@ export default function MyDocuments() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    {doc.file_url && (
-                      <Button variant="outline" size="sm" asChild>
-                        <a href={doc.file_url} target="_blank" rel="noopener noreferrer">
-                          <Eye className="w-4 h-4 mr-1" />
-                          Ansehen
-                        </a>
-                      </Button>
-                    )}
-                    <Button
-                      size="sm"
-                      className="bg-amber-600 hover:bg-amber-700"
-                      onClick={() => handleSign(doc)}
-                    >
-                      <CheckCircle className="w-4 h-4 mr-1" />
-                      Unterschreiben
-                    </Button>
-                  </div>
+                  <Button
+                    size="sm"
+                    className="bg-amber-600 hover:bg-amber-700"
+                    onClick={() => openSignDialog(doc)}
+                  >
+                    <PenTool className="w-4 h-4 mr-1" />
+                    Öffnen & Unterschreiben
+                  </Button>
                 </motion.div>
               );
             })}
@@ -210,6 +241,13 @@ export default function MyDocuments() {
           <p className="text-slate-500 mt-1">Dir wurden noch keine Dokumente zugewiesen.</p>
         </div>
       )}
+
+      <SignatureDialog
+        open={signDialogOpen}
+        onOpenChange={setSignDialogOpen}
+        document={selectedDoc}
+        onSign={handleSign}
+      />
     </div>
   );
 }
