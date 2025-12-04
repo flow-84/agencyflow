@@ -33,6 +33,9 @@ export default function ModelDashboard() {
 
   const signedDocs = documents.filter(d => d.is_signed).length;
   const pendingDocs = documents.filter(d => !d.is_signed).length;
+  
+  // Check if any contract document is signed
+  const hasSignedContract = documents.some(d => d.type === 'contract' && d.is_signed);
 
   const profileCompleteness = () => {
     if (!profile) return 0;
@@ -41,7 +44,7 @@ export default function ModelDashboard() {
     if (profile.bio) score += 20;
     if (profile.onlyfans_username) score += 20;
     if (profile.profile_image_url) score += 20;
-    if (profile.contract_signed) score += 20;
+    if (profile.contract_signed || hasSignedContract) score += 20;
     return score;
   };
 
@@ -176,13 +179,13 @@ export default function ModelDashboard() {
                   )}
                 </div>
                 <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                  <span className="text-sm">Vertrag unterschrieben</span>
-                  {profile?.contract_signed ? (
-                    <CheckCircle className="w-5 h-5 text-emerald-500" />
-                  ) : (
-                    <AlertCircle className="w-5 h-5 text-amber-500" />
-                  )}
-                </div>
+                    <span className="text-sm">Vertrag unterschrieben</span>
+                    {(profile?.contract_signed || hasSignedContract) ? (
+                      <CheckCircle className="w-5 h-5 text-emerald-500" />
+                    ) : (
+                      <AlertCircle className="w-5 h-5 text-amber-500" />
+                    )}
+                  </div>
               </div>
             </CardContent>
           </Card>
