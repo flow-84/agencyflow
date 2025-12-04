@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Save, Upload, Plus, X, Camera } from "lucide-react";
+import { Save, Upload, Plus, X, Camera, Download, Loader2 } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -21,6 +21,8 @@ export default function MyProfile() {
   const [newTag, setNewTag] = useState("");
   const [uploading, setUploading] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [importing, setImporting] = useState(false);
+  const [importError, setImportError] = useState("");
 
   const queryClient = useQueryClient();
 
@@ -99,6 +101,50 @@ export default function MyProfile() {
 
   const removeTag = (tag) => {
     setFormData({ ...formData, tags: formData.tags.filter(t => t !== tag) });
+  };
+
+  const importFromOnlyFans = async () => {
+    if (!formData.onlyfans_username) return;
+    
+    setImporting(true);
+    setImportError("");
+    
+    try {
+      const result = await base44.integrations.Core.InvokeLLM({
+        prompt: `Suche nach dem OnlyFans Profil mit dem Username "${formData.onlyfans_username}" und extrahiere folgende Informationen:
+- Vollständige Bio/Beschreibung des Profils
+- Profilbild URL (wenn öffentlich verfügbar)
+- Anzahl der Posts
+- Ungefähre Subscriber-Anzahl (wenn verfügbar)
+
+Bitte gib nur echte, verifizierte Informationen zurück. Wenn keine Informationen gefunden werden können, gib leere Werte zurück.`,
+        add_context_from_internet: true,
+        response_json_schema: {
+          type: "object",
+          properties: {
+            bio: { type: "string", description: "Die vollständige Bio des Profils" },
+            profile_image_url: { type: "string", description: "URL zum Profilbild" },
+            posts_count: { type: "number", description: "Anzahl der Posts" },
+            subscribers_estimate: { type: "number", description: "Geschätzte Subscriber-Anzahl" },
+            found: { type: "boolean", description: "Ob das Profil gefunden wurde" }
+          }
+        }
+      });
+
+      if (result.found) {
+        setFormData(prev => ({
+          ...prev,
+          bio: result.bio || prev.bio,
+          profile_image_url: result.profile_image_url || prev.profile_image_url,
+        }));
+      } else {
+        setImportError("Profil konnte nicht gefunden werden. Bitte überprüfe den Username.");
+      }
+    } catch (error) {
+      setImportError("Import fehlgeschlagen. Bitte versuche es später erneut.");
+    } finally {
+      setImporting(false);
+    }
   };
 
   if (isLoading) {
@@ -192,17 +238,44 @@ export default function MyProfile() {
 
             <div className="space-y-2">
               <Label>OnlyFans Username</Label>
-              <div className="flex">
-                <span className="inline-flex items-center px-3 bg-slate-100 border border-r-0 border-slate-200 rounded-l-md text-slate-500">
-                  @
-                </span>
-                <Input
-                  value={formData.onlyfans_username}
-                  onChange={(e) => setFormData({ ...formData, onlyfans_username: e.target.value })}
-                  placeholder="username"
-                  className="rounded-l-none"
-                />
+              <div className="flex flex-col sm:flex-row gap-2">
+                <div className="flex flex-1">
+                  <span className="inline-flex items-center px-3 bg-slate-100 border border-r-0 border-slate-200 rounded-l-md text-slate-500">
+                    @
+                  </span>
+                  <Input
+                    value={formData.onlyfans_username}
+                    onChange={(e) => setFormData({ ...formData, onlyfans_username: e.target.value })}
+                    placeholder="username"
+                    className="rounded-l-none"
+                  />
+                </div>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={importFromOnlyFans}
+                  disabled={importing || !formData.onlyfans_username}
+                  className="whitespace-nowrap"
+                >
+                  {importing ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Importiere...
+                    </>
+                  ) : (
+                    <>
+                      <Download className="w-4 h-4 mr-2" />
+                      Profil importieren
+                    </>
+                  )}
+                </Button>
               </div>
+              {importError && (
+                <p className="text-sm text-rose-600">{importError}</p>
+              )}
+              <p className="text-xs text-slate-500">
+                Gib deinen OnlyFans Username ein und klicke auf "Profil importieren" um Bio und Profilbild automatisch zu laden.
+              </p>
             </div>
 
             <div className="space-y-2">
