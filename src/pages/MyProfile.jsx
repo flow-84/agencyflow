@@ -111,32 +111,37 @@ export default function MyProfile() {
     
     try {
       const result = await base44.integrations.Core.InvokeLLM({
-        prompt: `Suche nach dem OnlyFans Profil mit dem Username "${formData.onlyfans_username}" und extrahiere folgende Informationen:
-- Vollständige Bio/Beschreibung des Profils
-- Profilbild URL (wenn öffentlich verfügbar)
-- Anzahl der Posts
-- Ungefähre Subscriber-Anzahl (wenn verfügbar)
+        prompt: `Finde das OnlyFans Profil für den Username "${formData.onlyfans_username}" auf onlyfans.com/${formData.onlyfans_username}.
 
-Bitte gib nur echte, verifizierte Informationen zurück. Wenn keine Informationen gefunden werden können, gib leere Werte zurück.`,
+Extrahiere diese Informationen:
+1. Die vollständige Bio/Beschreibung des Profils (der komplette Text den das Model dort geschrieben hat)
+2. Anzahl der Likes, Posts, Fotos, Videos falls sichtbar
+
+WICHTIG: OnlyFans Profilbilder können nicht direkt verlinkt werden, daher ignoriere das Profilbild.
+
+Gib die gefundene Bio zurück. Wenn das Profil nicht existiert oder privat ist, setze found auf false.`,
         add_context_from_internet: true,
         response_json_schema: {
           type: "object",
           properties: {
             bio: { type: "string", description: "Die vollständige Bio des Profils" },
-            profile_image_url: { type: "string", description: "URL zum Profilbild" },
-            posts_count: { type: "number", description: "Anzahl der Posts" },
-            subscribers_estimate: { type: "number", description: "Geschätzte Subscriber-Anzahl" },
+            likes_count: { type: "string", description: "Anzahl der Likes" },
+            posts_count: { type: "string", description: "Anzahl der Posts" },
+            photos_count: { type: "string", description: "Anzahl der Fotos" },
+            videos_count: { type: "string", description: "Anzahl der Videos" },
             found: { type: "boolean", description: "Ob das Profil gefunden wurde" }
           }
         }
       });
 
-      if (result.found) {
+      if (result.found && result.bio) {
         setFormData(prev => ({
           ...prev,
-          bio: result.bio || prev.bio,
-          profile_image_url: result.profile_image_url || prev.profile_image_url,
+          bio: result.bio,
         }));
+        setImportError("");
+      } else if (result.found && !result.bio) {
+        setImportError("Profil gefunden, aber keine Bio vorhanden.");
       } else {
         setImportError("Profil konnte nicht gefunden werden. Bitte überprüfe den Username.");
       }
@@ -274,7 +279,7 @@ Bitte gib nur echte, verifizierte Informationen zurück. Wenn keine Informatione
                 <p className="text-sm text-rose-600">{importError}</p>
               )}
               <p className="text-xs text-slate-500">
-                Gib deinen OnlyFans Username ein und klicke auf "Profil importieren" um Bio und Profilbild automatisch zu laden.
+                Gib deinen OnlyFans Username ein und klicke auf "Profil importieren" um deine Bio automatisch zu laden.
               </p>
             </div>
 
