@@ -18,24 +18,24 @@ export default function StatsCard({ title, value, subtitle, icon: Icon, color, t
       transition={{ duration: 0.3 }}
     >
       <Card className="relative overflow-hidden border-0 shadow-lg shadow-slate-200/50">
-        <div className="p-6">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="text-sm font-medium text-slate-500">{title}</p>
-              <h3 className="text-3xl font-bold text-slate-900 mt-2">{value}</h3>
+        <div className="p-4 sm:p-6">
+          <div className="flex items-start justify-between gap-2">
+            <div className="min-w-0 flex-1">
+              <p className="text-xs sm:text-sm font-medium text-slate-500 truncate">{title}</p>
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-1 sm:mt-2">{value}</h3>
               {subtitle && (
-                <p className="text-sm text-slate-500 mt-1">{subtitle}</p>
+                <p className="text-xs sm:text-sm text-slate-500 mt-1 truncate">{subtitle}</p>
               )}
               {trend && (
-                <div className={`inline-flex items-center mt-3 text-sm font-medium ${
+                <div className={`inline-flex items-center mt-2 sm:mt-3 text-xs sm:text-sm font-medium ${
                   trend > 0 ? 'text-emerald-600' : 'text-rose-600'
                 }`}>
-                  {trend > 0 ? '↑' : '↓'} {Math.abs(trend)}% zum Vormonat
+                  {trend > 0 ? '↑' : '↓'} {Math.abs(trend)}%
                 </div>
               )}
             </div>
-            <div className={`p-3 rounded-2xl bg-gradient-to-br ${colorClasses[color]} shadow-lg`}>
-              <Icon className="w-6 h-6 text-white" />
+            <div className={`p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-gradient-to-br ${colorClasses[color]} shadow-lg flex-shrink-0`}>
+              <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
           </div>
         </div>
