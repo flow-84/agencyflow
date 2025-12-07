@@ -17,6 +17,8 @@ import Welcome from './pages/Welcome';
 import TrainingCourse from './pages/TrainingCourse';
 import TeamChat from './pages/TeamChat';
 import SelectRole from './pages/SelectRole';
+import VIPDashboard from './pages/VIPDashboard';
+import AdminVideoManagement from './pages/AdminVideoManagement';
 import __Layout from './Layout.jsx';
 
 
@@ -40,6 +42,8 @@ export const PAGES = {
     "TrainingCourse": TrainingCourse,
     "TeamChat": TeamChat,
     "SelectRole": SelectRole,
+    "VIPDashboard": VIPDashboard,
+    "AdminVideoManagement": AdminVideoManagement,
 }
 
 export const pagesConfig = {

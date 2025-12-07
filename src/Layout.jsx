@@ -41,7 +41,8 @@ export default function Layout({ children, currentPageName }) {
   const isAdmin = user?.role === 'admin';
   const isModel = userRole === 'model';
   const isChatter = userRole === 'chatter';
-  const hasNoRole = !isAdmin && !isModel && !isChatter;
+  const isVIP = userRole === 'vip';
+  const hasNoRole = !isAdmin && !isModel && !isChatter && !isVIP;
 
   // Redirect users without role to SelectRole page
   useEffect(() => {
@@ -52,14 +53,15 @@ export default function Layout({ children, currentPageName }) {
 
   // Protect pages based on role
   const allowedPages = {
-    admin: ["Dashboard", "Applications", "Users", "Shifts", "Models", "Training", "Documents", "Settings"],
+    admin: ["Dashboard", "Applications", "Users", "Shifts", "Models", "Training", "Documents", "AdminVideoManagement", "Settings"],
     chatter: ["ChatterDashboard", "MyShifts", "MyTraining", "TrainingCourse", "Settings"],
     model: ["ModelDashboard", "MyProfile", "MyDocuments", "TeamChat", "Settings"],
+    vip: ["VIPDashboard", "Settings"],
   };
 
   useEffect(() => {
     if (user && !hasNoRole && currentPageName !== "Apply" && currentPageName !== "Welcome" && currentPageName !== "SelectRole") {
-      const role = isAdmin ? 'admin' : (isChatter ? 'chatter' : 'model');
+      const role = isAdmin ? 'admin' : (isChatter ? 'chatter' : (isModel ? 'model' : 'vip'));
       const allowed = allowedPages[role] || [];
       
       if (!allowed.includes(currentPageName)) {
@@ -70,10 +72,12 @@ export default function Layout({ children, currentPageName }) {
           window.location.href = createPageUrl('ChatterDashboard');
         } else if (isModel) {
           window.location.href = createPageUrl('ModelDashboard');
+        } else if (isVIP) {
+          window.location.href = createPageUrl('VIPDashboard');
         }
       }
     }
-  }, [user, currentPageName, isAdmin, isChatter, isModel, hasNoRole]);
+  }, [user, currentPageName, isAdmin, isChatter, isModel, isVIP, hasNoRole]);
 
   const getNavItems = () => {
     const items = [];
@@ -87,6 +91,7 @@ export default function Layout({ children, currentPageName }) {
         { name: "Models", icon: UserCircle, page: "Models" },
         { name: "Schulungen", icon: GraduationCap, page: "Training" },
         { name: "Dokumente", icon: FileText, page: "Documents" },
+        { name: "VIP Videos", icon: Bell, page: "AdminVideoManagement" },
       );
     } else if (isChatter) {
       items.push(
@@ -100,6 +105,10 @@ export default function Layout({ children, currentPageName }) {
         { name: "Mein Profil", icon: UserCircle, page: "MyProfile" },
         { name: "Dokumente", icon: FileText, page: "MyDocuments" },
         { name: "Team Chat", icon: Users, page: "TeamChat" },
+      );
+    } else if (isVIP) {
+      items.push(
+        { name: "Videos", icon: LayoutDashboard, page: "VIPDashboard" },
       );
     }
     
