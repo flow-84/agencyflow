@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Search, MoreVertical, UserPlus, Mail, Phone, Shield } from "lucide-react";
+import { Search, MoreVertical, UserPlus, Mail, Phone, Shield, Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -29,6 +29,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
@@ -37,6 +46,8 @@ export default function Users() {
   const [searchQuery, setSearchQuery] = useState("");
   const [roleFilter, setRoleFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [inviteDialog, setInviteDialog] = useState(false);
+  const [inviteEmail, setInviteEmail] = useState("");
 
   const queryClient = useQueryClient();
 
@@ -49,6 +60,29 @@ export default function Users() {
     mutationFn: ({ id, data }) => base44.entities.User.update(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
+    },
+  });
+
+  const inviteMutation = useMutation({
+    mutationFn: async (email) => {
+      // Invite user with VIP role
+      const result = await base44.entities.User.invite(email, { user_role: 'vip' });
+      
+      // Create notification for all admins
+      await base44.entities.Notification.create({
+        type: 'vip_invited',
+        title: 'Neuer VIP eingeladen',
+        message: `VIP-Einladung wurde an ${email} versendet`,
+        user_email: email,
+        for_admins: true,
+      });
+      
+      return result;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+      setInviteDialog(false);
+      setInviteEmail("");
     },
   });
 
@@ -73,6 +107,7 @@ export default function Users() {
     admin: { label: "Admin", color: "bg-violet-100 text-violet-700" },
     chatter: { label: "Chatter", color: "bg-blue-100 text-blue-700" },
     model: { label: "Model", color: "bg-pink-100 text-pink-700" },
+    vip: { label: "VIP", color: "bg-amber-100 text-amber-700" },
   };
 
   const statusConfig = {
@@ -92,6 +127,13 @@ export default function Users() {
           <h1 className="text-3xl font-bold text-slate-900">Nutzer</h1>
           <p className="text-slate-500 mt-1">Verwalte alle Benutzerkonten</p>
         </div>
+        <Button
+          onClick={() => setInviteDialog(true)}
+          className="bg-amber-600 hover:bg-amber-700"
+        >
+          <Sparkles className="w-4 h-4 mr-2" />
+          VIP einladen
+        </Button>
       </motion.div>
 
       {/* Filters */}
@@ -115,6 +157,7 @@ export default function Users() {
             <SelectItem value="admin">Admin</SelectItem>
             <SelectItem value="chatter">Chatter</SelectItem>
             <SelectItem value="model">Model</SelectItem>
+            <SelectItem value="vip">VIP</SelectItem>
           </SelectContent>
         </Select>
 
@@ -216,6 +259,9 @@ export default function Users() {
                           <DropdownMenuItem onClick={() => handleRoleChange(user.id, 'admin')}>
                             Rolle: Admin
                           </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => handleRoleChange(user.id, 'vip')}>
+                            Rolle: VIP
+                          </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </TableCell>
@@ -226,6 +272,45 @@ export default function Users() {
           </TableBody>
         </Table>
       </Card>
+
+      <Dialog open={inviteDialog} onOpenChange={setInviteDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>VIP einladen</DialogTitle>
+            <DialogDescription>
+              Lade einen neuen VIP-Nutzer per E-Mail ein. Der Nutzer erhält eine Einladungs-E-Mail mit einem Link zum Setzen des Passworts oder zur Anmeldung mit Google.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div>
+              <Label>E-Mail-Adresse *</Label>
+              <Input
+                type="email"
+                value={inviteEmail}
+                onChange={(e) => setInviteEmail(e.target.value)}
+                placeholder="vip@beispiel.de"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setInviteDialog(false)}>
+              Abbrechen
+            </Button>
+            <Button
+              onClick={() => inviteMutation.mutate(inviteEmail)}
+              disabled={!inviteEmail || inviteMutation.isPending}
+              className="bg-amber-600 hover:bg-amber-700"
+            >
+              {inviteMutation.isPending ? (
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+              ) : (
+                <Mail className="w-4 h-4 mr-2" />
+              )}
+              Einladung senden
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

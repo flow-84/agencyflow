@@ -19,6 +19,7 @@ import {
   Bell
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import NotificationBell from "@/components/notifications/NotificationBell";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -161,7 +162,7 @@ export default function Layout({ children, currentPageName }) {
           </div>
           <span className="font-semibold text-slate-900">Agency Hub</span>
         </div>
-        <div className="w-10" />
+        {isAdmin && <NotificationBell />}
       </div>
 
       {/* Sidebar */}
@@ -205,6 +206,13 @@ export default function Layout({ children, currentPageName }) {
             );
           })}
         </nav>
+
+        {/* Notifications (Desktop) */}
+        {isAdmin && (
+          <div className="px-4 pb-2">
+            <NotificationBell />
+          </div>
+        )}
 
         {/* User Section */}
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-100 bg-white">
