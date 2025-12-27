@@ -126,7 +126,7 @@ Die App nutzt ein rollenbasiertes Zugriffssystem. Sichtbare Funktionen und Dashb
 - **Frontend**  
   React, TypeScript, Tailwind CSS.
 - **Backend**  
-  Base44 Backend as a Service mit Authentifizierung und Datenbank.
+  Backend as a Service mit Authentifizierung und Datenbank.
 - **Responsive Design**  
   Optimiert für Desktop, Tablet und Smartphone.
 
