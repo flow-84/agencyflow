@@ -1,4 +1,4 @@
-# Agency Hub
+# Agency Hub by fl0w
 ## Funktionsumfang für Agenturinhaber
 
 Diese Dokumentation bietet Agenturinhabern einen strukturierten Überblick über die Kernfunktionen und Rollen der **Agency Hub App**. Ziel ist ein effizientes Management sowie eine reibungslose Zusammenarbeit zwischen allen Beteiligten.
