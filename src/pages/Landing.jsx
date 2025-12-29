@@ -7,29 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function Landing() {
-  useEffect(() => {
-    // Check if user is already authenticated and redirect to appropriate dashboard
-    base44.auth.me().then(user => {
-      if (user) {
-        if (user.role === 'admin') {
-          window.location.href = createPageUrl('Dashboard');
-        } else if (user.user_role === 'chatter') {
-          window.location.href = createPageUrl('ChatterDashboard');
-        } else if (user.user_role === 'model') {
-          window.location.href = createPageUrl('ModelDashboard');
-        } else if (user.user_role === 'vip') {
-          window.location.href = createPageUrl('VIPDashboard');
-        } else {
-          window.location.href = createPageUrl('SelectRole');
-        }
-      }
-    }).catch(() => {
-      // User not authenticated, stay on landing page
-    });
-  }, []);
-
   const handleGetStarted = () => {
-    base44.auth.redirectToLogin(createPageUrl('Welcome'));
+    base44.auth.redirectToLogin();
   };
 
   return (

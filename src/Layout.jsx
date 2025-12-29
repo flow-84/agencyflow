@@ -140,9 +140,9 @@ export default function Layout({ children, currentPageName }) {
     return <>{children}</>;
   }
 
-  // If authentication failed, redirect to landing page
+  // If authentication failed on protected pages, redirect to login
   if (isError && !publicPages.includes(currentPageName)) {
-    window.location.href = createPageUrl('Landing');
+    base44.auth.redirectToLogin();
     return null;
   }
 
