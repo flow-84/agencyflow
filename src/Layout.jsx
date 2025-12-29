@@ -133,7 +133,9 @@ export default function Layout({ children, currentPageName }) {
     base44.auth.logout();
   };
 
-  if (currentPageName === "Apply" || currentPageName === "Welcome" || currentPageName === "SelectRole") {
+  // Public pages that don't require authentication
+  const publicPages = ["Apply", "Welcome", "SelectRole", "Landing", "PrivacyPolicy", "TermsOfService"];
+  if (publicPages.includes(currentPageName)) {
     return <>{children}</>;
   }
 

@@ -1,49 +1,57 @@
-import Dashboard from './pages/Dashboard';
+import AdminVideoManagement from './pages/AdminVideoManagement';
 import Applications from './pages/Applications';
-import Users from './pages/Users';
-import Shifts from './pages/Shifts';
-import Models from './pages/Models';
-import Training from './pages/Training';
-import Documents from './pages/Documents';
+import Apply from './pages/Apply';
 import ChatterDashboard from './pages/ChatterDashboard';
+import Dashboard from './pages/Dashboard';
+import Documents from './pages/Documents';
+import Home from './pages/Home';
+import ModelDashboard from './pages/ModelDashboard';
+import Models from './pages/Models';
+import MyDocuments from './pages/MyDocuments';
+import MyProfile from './pages/MyProfile';
 import MyShifts from './pages/MyShifts';
 import MyTraining from './pages/MyTraining';
-import ModelDashboard from './pages/ModelDashboard';
-import MyProfile from './pages/MyProfile';
-import MyDocuments from './pages/MyDocuments';
-import Settings from './pages/Settings';
-import Apply from './pages/Apply';
-import Welcome from './pages/Welcome';
-import TrainingCourse from './pages/TrainingCourse';
-import TeamChat from './pages/TeamChat';
 import SelectRole from './pages/SelectRole';
+import Settings from './pages/Settings';
+import Shifts from './pages/Shifts';
+import TeamChat from './pages/TeamChat';
+import Training from './pages/Training';
+import TrainingCourse from './pages/TrainingCourse';
+import Users from './pages/Users';
 import VIPDashboard from './pages/VIPDashboard';
-import AdminVideoManagement from './pages/AdminVideoManagement';
+import Welcome from './pages/Welcome';
+import Landing from './pages/Landing';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
-    "Dashboard": Dashboard,
+    "AdminVideoManagement": AdminVideoManagement,
     "Applications": Applications,
-    "Users": Users,
-    "Shifts": Shifts,
-    "Models": Models,
-    "Training": Training,
-    "Documents": Documents,
+    "Apply": Apply,
     "ChatterDashboard": ChatterDashboard,
+    "Dashboard": Dashboard,
+    "Documents": Documents,
+    "Home": Home,
+    "ModelDashboard": ModelDashboard,
+    "Models": Models,
+    "MyDocuments": MyDocuments,
+    "MyProfile": MyProfile,
     "MyShifts": MyShifts,
     "MyTraining": MyTraining,
-    "ModelDashboard": ModelDashboard,
-    "MyProfile": MyProfile,
-    "MyDocuments": MyDocuments,
-    "Settings": Settings,
-    "Apply": Apply,
-    "Welcome": Welcome,
-    "TrainingCourse": TrainingCourse,
-    "TeamChat": TeamChat,
     "SelectRole": SelectRole,
+    "Settings": Settings,
+    "Shifts": Shifts,
+    "TeamChat": TeamChat,
+    "Training": Training,
+    "TrainingCourse": TrainingCourse,
+    "Users": Users,
     "VIPDashboard": VIPDashboard,
-    "AdminVideoManagement": AdminVideoManagement,
+    "Welcome": Welcome,
+    "Landing": Landing,
+    "PrivacyPolicy": PrivacyPolicy,
+    "TermsOfService": TermsOfService,
 }
 
 export const pagesConfig = {
