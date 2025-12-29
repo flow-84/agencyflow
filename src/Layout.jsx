@@ -33,9 +33,10 @@ import { Badge } from "@/components/ui/badge";
 export default function Layout({ children, currentPageName }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const { data: user } = useQuery({
+  const { data: user, isError } = useQuery({
     queryKey: ['currentUser'],
     queryFn: () => base44.auth.me(),
+    retry: false,
   });
 
   const userRole = user?.user_role;
@@ -137,6 +138,12 @@ export default function Layout({ children, currentPageName }) {
   const publicPages = ["Apply", "Welcome", "SelectRole", "Landing", "PrivacyPolicy", "TermsOfService"];
   if (publicPages.includes(currentPageName)) {
     return <>{children}</>;
+  }
+
+  // If authentication failed, redirect to landing page
+  if (isError && !publicPages.includes(currentPageName)) {
+    window.location.href = createPageUrl('Landing');
+    return null;
   }
 
   return (
