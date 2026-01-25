@@ -23,6 +23,7 @@ import TrainingCourse from './pages/TrainingCourse';
 import Users from './pages/Users';
 import VIPDashboard from './pages/VIPDashboard';
 import Welcome from './pages/Welcome';
+import TeamMindmap from './pages/TeamMindmap';
 import __Layout from './Layout.jsx';
 
 
@@ -52,6 +53,7 @@ export const PAGES = {
     "Users": Users,
     "VIPDashboard": VIPDashboard,
     "Welcome": Welcome,
+    "TeamMindmap": TeamMindmap,
 }
 
 export const pagesConfig = {

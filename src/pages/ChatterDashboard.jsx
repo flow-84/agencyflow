@@ -1,19 +1,17 @@
 import React from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
-import { Calendar, Clock, GraduationCap, CheckCircle, ArrowRight, Camera, Network } from "lucide-react";
+import { Calendar, Clock, GraduationCap, CheckCircle, ArrowRight, UserCircle } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ModelsGallery from "@/components/models/ModelsGallery";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { motion } from "framer-motion";
 import { format, isToday, isTomorrow, parseISO } from "date-fns";
 import { de } from "date-fns/locale";
-import ModelsGallery from "@/components/models/ModelsGallery";
-import TeamMindmap from "@/components/team/TeamMindmap";
 
 export default function ChatterDashboard() {
   const { data: user } = useQuery({
@@ -281,7 +279,27 @@ export default function ChatterDashboard() {
             <p className="text-xs text-slate-500">Fortschritt</p>
           </Card>
         </motion.div>
-      </div>
-    </div>
-  );
-}
+        </div>
+
+        {/* Models Gallery */}
+        <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7 }}
+        className="mt-8"
+        >
+        <Card className="border-0 shadow-lg shadow-slate-200/50">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
+              <UserCircle className="w-5 h-5 text-violet-600" />
+              Models Galerie
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ModelsGallery />
+          </CardContent>
+        </Card>
+        </motion.div>
+        </div>
+        );
+        }

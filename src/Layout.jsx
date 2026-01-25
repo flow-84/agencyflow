@@ -55,10 +55,10 @@ export default function Layout({ children, currentPageName }) {
 
   // Protect pages based on role
   const allowedPages = {
-    admin: ["Dashboard", "Applications", "Users", "Shifts", "Models", "Training", "Documents", "AdminVideoManagement", "Settings"],
-    chatter: ["ChatterDashboard", "MyShifts", "MyTraining", "TrainingCourse", "Settings"],
-    model: ["ModelDashboard", "MyProfile", "MyDocuments", "TeamChat", "Settings"],
-    vip: ["VIPDashboard", "Settings"],
+    admin: ["Dashboard", "Applications", "Users", "Shifts", "Models", "Training", "Documents", "AdminVideoManagement", "TeamMindmap", "Settings"],
+    chatter: ["ChatterDashboard", "MyShifts", "MyTraining", "TrainingCourse", "TeamMindmap", "Settings"],
+    model: ["ModelDashboard", "MyProfile", "MyDocuments", "TeamChat", "TeamMindmap", "Settings"],
+    vip: ["VIPDashboard", "TeamMindmap", "Settings"],
   };
 
   useEffect(() => {
@@ -94,12 +94,14 @@ export default function Layout({ children, currentPageName }) {
         { name: "Schulungen", icon: GraduationCap, page: "Training" },
         { name: "Dokumente", icon: FileText, page: "Documents" },
         { name: "VIP Videos", icon: Bell, page: "AdminVideoManagement" },
+        { name: "Team Hierarchie", icon: Users, page: "TeamMindmap" },
       );
     } else if (isChatter) {
       items.push(
         { name: "Übersicht", icon: LayoutDashboard, page: "ChatterDashboard" },
         { name: "Meine Schichten", icon: Calendar, page: "MyShifts" },
         { name: "Schulungen", icon: GraduationCap, page: "MyTraining" },
+        { name: "Team Hierarchie", icon: Users, page: "TeamMindmap" },
       );
     } else if (isModel) {
       items.push(
@@ -107,10 +109,12 @@ export default function Layout({ children, currentPageName }) {
         { name: "Mein Profil", icon: UserCircle, page: "MyProfile" },
         { name: "Dokumente", icon: FileText, page: "MyDocuments" },
         { name: "Team Chat", icon: Users, page: "TeamChat" },
+        { name: "Team Hierarchie", icon: Users, page: "TeamMindmap" },
       );
     } else if (isVIP) {
       items.push(
         { name: "Videos", icon: LayoutDashboard, page: "VIPDashboard" },
+        { name: "Team Hierarchie", icon: Users, page: "TeamMindmap" },
       );
     }
     
