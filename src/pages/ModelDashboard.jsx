@@ -1,7 +1,7 @@
 import React from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
-import { UserCircle, FileText, TrendingUp, Users, ArrowRight, CheckCircle, AlertCircle } from "lucide-react";
+import { UserCircle, FileText, TrendingUp, Users, ArrowRight, CheckCircle, AlertCircle, Network } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { Progress } from "@/components/ui/progress";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { motion } from "framer-motion";
+import TeamMindmap from "@/components/team/TeamMindmap";
 
 export default function ModelDashboard() {
   const { data: user } = useQuery({
@@ -296,7 +297,20 @@ export default function ModelDashboard() {
               </CardContent>
           </Card>
         </motion.div>
-      )}
-    </div>
-  );
-}
+        )}
+
+        {/* Team Map */}
+        <Card className="border-0 shadow-lg shadow-slate-200/50">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
+            <Network className="w-5 h-5 text-violet-600" />
+            Team Übersicht
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <TeamMindmap />
+        </CardContent>
+        </Card>
+        </div>
+        );
+        }

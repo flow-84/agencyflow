@@ -1,16 +1,19 @@
 import React from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
-import { Calendar, Clock, GraduationCap, CheckCircle, ArrowRight } from "lucide-react";
+import { Calendar, Clock, GraduationCap, CheckCircle, ArrowRight, Camera, Network } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { motion } from "framer-motion";
 import { format, isToday, isTomorrow, parseISO } from "date-fns";
 import { de } from "date-fns/locale";
+import ModelsGallery from "@/components/models/ModelsGallery";
+import TeamMindmap from "@/components/team/TeamMindmap";
 
 export default function ChatterDashboard() {
   const { data: user } = useQuery({

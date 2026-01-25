@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
-import { Users, ClipboardList, Calendar, GraduationCap, UserCircle, TrendingUp } from "lucide-react";
+import { Users, ClipboardList, Calendar, GraduationCap, UserCircle, TrendingUp, Camera, Network } from "lucide-react";
 import StatsCard from "@/components/dashboard/StatsCard";
 import ActivityFeed from "@/components/dashboard/ActivityFeed";
+import ModelsGallery from "@/components/models/ModelsGallery";
+import TeamMindmap from "@/components/team/TeamMindmap";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
@@ -103,11 +106,54 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Activity Feed */}
-        <div className="lg:col-span-2">
-          <ActivityFeed activities={recentActivities} />
+        <div className="lg:col-span-3">
+          <Tabs defaultValue="activity" className="w-full">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="activity">Aktivität</TabsTrigger>
+              <TabsTrigger value="models">
+                <Camera className="w-4 h-4 mr-2" />
+                Models
+              </TabsTrigger>
+              <TabsTrigger value="team">
+                <Network className="w-4 h-4 mr-2" />
+                Team Map
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="activity" className="mt-6">
+              <ActivityFeed activities={recentActivities} />
+            </TabsContent>
+            <TabsContent value="models" className="mt-6">
+              <Card className="border-0 shadow-lg shadow-slate-200/50">
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
+                    <Camera className="w-5 h-5 text-pink-600" />
+                    Models Übersicht
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ModelsGallery />
+                </CardContent>
+              </Card>
+            </TabsContent>
+            <TabsContent value="team" className="mt-6">
+              <Card className="border-0 shadow-lg shadow-slate-200/50">
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
+                    <Network className="w-5 h-5 text-violet-600" />
+                    Team Hierarchie
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <TeamMindmap />
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </div>
         </div>
 
-        {/* Quick Stats */}
+        {/* Quick Stats - moved below */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="border-0 shadow-lg shadow-slate-200/50">
           <CardHeader className="pb-4">
             <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">

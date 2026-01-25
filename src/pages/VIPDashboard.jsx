@@ -162,6 +162,19 @@ export default function VIPDashboard() {
           </div>
         </DialogContent>
       </Dialog>
-    </div>
-  );
-}
+
+      {/* Team Map */}
+      <Card className="border-0 shadow-lg shadow-slate-200/50">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
+            <Network className="w-5 h-5 text-violet-600" />
+            Team Übersicht
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <TeamMindmap />
+        </CardContent>
+      </Card>
+      </div>
+      );
+      }
