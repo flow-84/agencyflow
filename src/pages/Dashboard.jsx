@@ -142,6 +142,26 @@ export default function Dashboard() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Models Gallery */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mt-8"
+      >
+        <Card className="border-0 shadow-lg shadow-slate-200/50">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
+              <UserCircle className="w-5 h-5 text-violet-600" />
+              Models Galerie
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ModelsGallery />
+          </CardContent>
+        </Card>
+      </motion.div>
     </div>
   );
 }
