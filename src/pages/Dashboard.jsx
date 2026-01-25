@@ -150,10 +150,10 @@ export default function Dashboard() {
             </TabsContent>
           </Tabs>
         </div>
-        </div>
+      </div>
 
-        {/* Quick Stats - moved below */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Quick Stats - moved below */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="border-0 shadow-lg shadow-slate-200/50">
           <CardHeader className="pb-4">
             <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
-import { Play, Clock, Sparkles } from "lucide-react";
+import { Play, Clock, Sparkles, Network } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
@@ -11,6 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import TeamMindmap from "@/components/team/TeamMindmap";
 
 export default function VIPDashboard() {
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -175,6 +176,6 @@ export default function VIPDashboard() {
           <TeamMindmap />
         </CardContent>
       </Card>
-      </div>
-      );
-      }
+    </div>
+  );
+}
