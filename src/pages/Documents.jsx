@@ -133,8 +133,8 @@ export default function Documents() {
         className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
       >
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Dokumente</h1>
-          <p className="text-slate-500 mt-1">Verwalte Verträge und Dokumente</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Dokumente</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Verwalte Verträge und Dokumente</p>
         </div>
         <Button
           onClick={() => {
@@ -175,16 +175,16 @@ export default function Documents() {
       </div>
 
       {/* Documents Table */}
-      <Card className="border-0 shadow-lg shadow-slate-200/50 overflow-hidden">
+      <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50 overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50">
-              <TableHead>Dokument</TableHead>
-              <TableHead>Typ</TableHead>
-              <TableHead>Nutzer</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Datum</TableHead>
-              <TableHead className="w-24">Aktionen</TableHead>
+            <TableRow className="bg-slate-50 dark:bg-slate-700/50">
+              <TableHead className="text-slate-700 dark:text-slate-300">Dokument</TableHead>
+              <TableHead className="text-slate-700 dark:text-slate-300">Typ</TableHead>
+              <TableHead className="text-slate-700 dark:text-slate-300">Nutzer</TableHead>
+              <TableHead className="text-slate-700 dark:text-slate-300">Status</TableHead>
+              <TableHead className="text-slate-700 dark:text-slate-300">Datum</TableHead>
+              <TableHead className="w-24 text-slate-700 dark:text-slate-300">Aktionen</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -198,7 +198,7 @@ export default function Documents() {
               ))
             ) : filteredDocuments.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={6} className="text-center py-12 text-slate-500">
+                <TableCell colSpan={6} className="text-center py-12 text-slate-500 dark:text-slate-400">
                   Keine Dokumente gefunden
                 </TableCell>
               </TableRow>
@@ -207,16 +207,16 @@ export default function Documents() {
                 const type = typeConfig[doc.type] || typeConfig.other;
                 
                 return (
-                  <TableRow key={doc.id} className="hover:bg-slate-50">
+                  <TableRow key={doc.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/30">
                     <TableCell>
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center">
-                          <FileText className="w-5 h-5 text-slate-500" />
+                        <div className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
+                          <FileText className="w-5 h-5 text-slate-500 dark:text-slate-400" />
                         </div>
                         <div>
-                          <p className="font-medium text-slate-900">{doc.title}</p>
+                          <p className="font-medium text-slate-900 dark:text-white">{doc.title}</p>
                           {doc.notes && (
-                            <p className="text-xs text-slate-500 truncate max-w-xs">{doc.notes}</p>
+                            <p className="text-xs text-slate-500 dark:text-slate-400 truncate max-w-xs">{doc.notes}</p>
                           )}
                         </div>
                       </div>
@@ -226,21 +226,21 @@ export default function Documents() {
                         {type.label}
                       </Badge>
                     </TableCell>
-                    <TableCell className="text-slate-500">
+                    <TableCell className="text-slate-500 dark:text-slate-400">
                       {doc.owner_email || '-'}
                     </TableCell>
                     <TableCell>
                       {doc.is_signed ? (
-                        <Badge className="bg-emerald-100 text-emerald-700 border-0">
+                        <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 border-0">
                           Unterschrieben
                         </Badge>
                       ) : (
-                        <Badge variant="outline" className="text-amber-700 border-amber-200">
+                        <Badge variant="outline" className="text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-700">
                           Ausstehend
                         </Badge>
                       )}
                     </TableCell>
-                    <TableCell className="text-slate-500">
+                    <TableCell className="text-slate-500 dark:text-slate-400">
                       {doc.created_date ? format(new Date(doc.created_date), "dd. MMM yyyy", { locale: de }) : '-'}
                     </TableCell>
                     <TableCell>

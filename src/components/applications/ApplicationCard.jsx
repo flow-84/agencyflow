@@ -37,7 +37,7 @@ export default function ApplicationCard({ application, onStatusChange, onView })
       whileHover={{ y: -2 }}
       transition={{ duration: 0.2 }}
     >
-      <Card className="p-5 border-0 shadow-lg shadow-slate-200/50 hover:shadow-xl transition-shadow">
+      <Card className="p-5 border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50 hover:shadow-xl transition-shadow">
         <div className="flex items-start gap-4">
           <Avatar className="w-12 h-12 ring-2 ring-white shadow">
             <AvatarFallback className="bg-gradient-to-br from-violet-500 to-purple-600 text-white font-semibold">
@@ -47,13 +47,13 @@ export default function ApplicationCard({ application, onStatusChange, onView })
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <h3 className="font-semibold text-slate-900">{application.applicant_name}</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-white">{application.applicant_name}</h3>
               <Badge className={`${role.color} border-0 font-medium`}>
                 {role.label}
               </Badge>
             </div>
             
-            <div className="flex items-center gap-4 mt-2 text-sm text-slate-500">
+            <div className="flex items-center gap-4 mt-2 text-sm text-slate-500 dark:text-slate-400">
               <span className="flex items-center gap-1">
                 <Mail className="w-3.5 h-3.5" />
                 {application.email}
@@ -67,17 +67,17 @@ export default function ApplicationCard({ application, onStatusChange, onView })
             </div>
 
             {application.motivation && (
-              <p className="text-sm text-slate-600 mt-3 line-clamp-2">
+              <p className="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-2">
                 {application.motivation}
               </p>
             )}
 
             <div className="flex items-center justify-between mt-4">
               <div className="flex items-center gap-2">
-                <Badge variant="outline" className={`${status.color} font-medium`}>
+                <Badge variant="outline" className={`${status.color} font-medium dark:border-opacity-50`}>
                   {status.label}
                 </Badge>
-                <span className="text-xs text-slate-400">
+                <span className="text-xs text-slate-400 dark:text-slate-500">
                   {format(new Date(application.created_date), "dd. MMM yyyy", { locale: de })}
                 </span>
               </div>

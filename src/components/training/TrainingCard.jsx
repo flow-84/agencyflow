@@ -34,7 +34,7 @@ export default function TrainingCard({ material, progress, onStart }) {
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="overflow-hidden border-0 shadow-lg shadow-slate-200/50 hover:shadow-xl transition-all">
+      <Card className="overflow-hidden border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50 hover:shadow-xl transition-all">
         {material.thumbnail_url ? (
           <div className="relative h-40 bg-slate-100">
             <img
@@ -70,18 +70,18 @@ export default function TrainingCard({ material, progress, onStart }) {
             )}
           </div>
 
-          <h3 className="font-semibold text-slate-900 line-clamp-2 min-h-[48px]">
+          <h3 className="font-semibold text-slate-900 dark:text-white line-clamp-2 min-h-[48px]">
             {material.title}
           </h3>
 
           {material.description && (
-            <p className="text-sm text-slate-500 mt-2 line-clamp-2">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">
               {material.description}
             </p>
           )}
 
           {material.duration_minutes && (
-            <div className="flex items-center gap-1 mt-3 text-xs text-slate-400">
+            <div className="flex items-center gap-1 mt-3 text-xs text-slate-400 dark:text-slate-500">
               <Clock className="w-3 h-3" />
               <span>{material.duration_minutes} Min.</span>
             </div>
@@ -89,7 +89,7 @@ export default function TrainingCard({ material, progress, onStart }) {
 
           {progressPercent > 0 && !isCompleted && (
             <div className="mt-4">
-              <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
+              <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
                 <span>Fortschritt</span>
                 <span>{progressPercent}%</span>
               </div>

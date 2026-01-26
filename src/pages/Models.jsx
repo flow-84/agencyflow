@@ -124,8 +124,8 @@ export default function Models() {
         className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
       >
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Models</h1>
-          <p className="text-slate-500 mt-1">Verwalte Model-Profile und Daten</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Models</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Verwalte Model-Profile und Daten</p>
         </div>
         <Button
           onClick={() => {
@@ -194,8 +194,8 @@ export default function Models() {
               <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <UserCircle className="w-8 h-8 text-slate-400" />
               </div>
-              <h3 className="text-lg font-medium text-slate-900">Keine Models</h3>
-              <p className="text-slate-500 mt-1">Es wurden keine passenden Profile gefunden.</p>
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">Keine Models</h3>
+              <p className="text-slate-500 dark:text-slate-400 mt-1">Es wurden keine passenden Profile gefunden.</p>
             </motion.div>
           ) : (
             filteredModels.map(model => (

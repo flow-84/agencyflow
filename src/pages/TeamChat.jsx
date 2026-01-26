@@ -74,23 +74,23 @@ export default function TeamChat() {
         animate={{ opacity: 1, y: 0 }}
         className="mb-6"
       >
-        <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-3">
-          <MessageCircle className="w-8 h-8 text-violet-600" />
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+          <MessageCircle className="w-8 h-8 text-pink-600 dark:text-pink-400" />
           Team Chat
         </h1>
-        <p className="text-slate-500 mt-1">Kommuniziere mit deinem Team</p>
+        <p className="text-slate-500 dark:text-slate-400 mt-1">Kommuniziere mit deinem Team</p>
       </motion.div>
 
-      <Card className="flex-1 border-0 shadow-lg flex flex-col overflow-hidden">
+      <Card className="flex-1 border-0 shadow-lg bg-white dark:bg-slate-800/50 flex flex-col overflow-hidden">
         {/* Chat Header */}
-        <CardHeader className="border-b py-4">
+        <CardHeader className="border-b border-slate-200 dark:border-slate-700 py-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center">
-              <Users className="w-5 h-5 text-violet-600" />
+            <div className="w-10 h-10 rounded-full bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center">
+              <Users className="w-5 h-5 text-pink-600 dark:text-pink-400" />
             </div>
             <div>
-              <CardTitle className="text-lg">Team Kanal</CardTitle>
-              <p className="text-sm text-slate-500">Alle Teammitglieder</p>
+              <CardTitle className="text-lg text-slate-900 dark:text-white">Team Kanal</CardTitle>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Alle Teammitglieder</p>
             </div>
           </div>
         </CardHeader>
@@ -102,7 +102,7 @@ export default function TeamChat() {
               <div className="animate-spin w-8 h-8 border-4 border-violet-600 border-t-transparent rounded-full" />
             </div>
           ) : sortedMessages.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-slate-400">
+            <div className="flex flex-col items-center justify-center h-full text-slate-400 dark:text-slate-500">
               <MessageCircle className="w-16 h-16 mb-4 opacity-50" />
               <p>Noch keine Nachrichten</p>
               <p className="text-sm">Starte die Konversation!</p>
@@ -131,17 +131,17 @@ export default function TeamChat() {
                         </Avatar>
                         <div className={`${isOwn ? 'text-right' : ''}`}>
                           <div className="flex items-center gap-2 mb-1">
-                            <span className={`text-sm font-medium ${isOwn ? 'text-violet-600' : 'text-slate-700'}`}>
+                            <span className={`text-sm font-medium ${isOwn ? 'text-pink-600 dark:text-pink-400' : 'text-slate-700 dark:text-slate-300'}`}>
                               {isOwn ? 'Du' : msg.sender_name}
                             </span>
-                            <span className="text-xs text-slate-400">
+                            <span className="text-xs text-slate-400 dark:text-slate-500">
                               {formatMessageDate(msg.created_date)}
                             </span>
                           </div>
                           <div className={`p-3 rounded-2xl ${
                             isOwn 
-                              ? 'bg-violet-600 text-white rounded-br-md' 
-                              : 'bg-slate-100 text-slate-900 rounded-bl-md'
+                              ? 'bg-pink-600 text-white rounded-br-md' 
+                              : 'bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white rounded-bl-md'
                           }`}>
                             <p className="text-sm whitespace-pre-wrap">{msg.message}</p>
                           </div>
@@ -156,19 +156,19 @@ export default function TeamChat() {
         </ScrollArea>
 
         {/* Input */}
-        <div className="p-4 border-t bg-slate-50">
+        <div className="p-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
           <form onSubmit={handleSend} className="flex gap-3">
             <Input
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Nachricht schreiben..."
-              className="flex-1 border-slate-200"
+              className="flex-1 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
               disabled={sendMutation.isPending}
             />
             <Button 
               type="submit" 
               disabled={!message.trim() || sendMutation.isPending}
-              className="bg-violet-600 hover:bg-violet-700"
+              className="bg-pink-600 hover:bg-pink-700"
             >
               <Send className="w-4 h-4" />
             </Button>

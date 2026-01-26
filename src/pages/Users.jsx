@@ -124,8 +124,8 @@ export default function Users() {
         className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
       >
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Nutzer</h1>
-          <p className="text-slate-500 mt-1">Verwalte alle Benutzerkonten</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Nutzer</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Verwalte alle Benutzerkonten</p>
         </div>
         <Button
           onClick={() => setInviteDialog(true)}
@@ -175,14 +175,14 @@ export default function Users() {
       </div>
 
       {/* Users Table */}
-      <Card className="border-0 shadow-lg shadow-slate-200/50 overflow-hidden">
+      <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50 overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-slate-50">
-              <TableHead>Nutzer</TableHead>
-              <TableHead>Rolle</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Registriert</TableHead>
+            <TableRow className="bg-slate-50 dark:bg-slate-700/50">
+              <TableHead className="text-slate-700 dark:text-slate-300">Nutzer</TableHead>
+              <TableHead className="text-slate-700 dark:text-slate-300">Rolle</TableHead>
+              <TableHead className="text-slate-700 dark:text-slate-300">Status</TableHead>
+              <TableHead className="text-slate-700 dark:text-slate-300">Registriert</TableHead>
               <TableHead className="w-12"></TableHead>
             </TableRow>
           </TableHeader>
@@ -197,7 +197,7 @@ export default function Users() {
               ))
             ) : filteredUsers.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5} className="text-center py-12 text-slate-500">
+                <TableCell colSpan={5} className="text-center py-12 text-slate-500 dark:text-slate-400">
                   Keine Nutzer gefunden
                 </TableCell>
               </TableRow>
@@ -207,18 +207,18 @@ export default function Users() {
                 const status = statusConfig[user.status] || statusConfig.pending;
                 
                 return (
-                  <TableRow key={user.id} className="hover:bg-slate-50">
+                  <TableRow key={user.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/30">
                     <TableCell>
                       <div className="flex items-center gap-3">
                         <Avatar className="w-10 h-10">
                           <AvatarImage src={user.avatar_url} />
-                          <AvatarFallback className="bg-gradient-to-br from-violet-500 to-purple-600 text-white">
+                          <AvatarFallback className="bg-gradient-to-br from-pink-500 to-pink-600 text-white">
                             {user.full_name?.charAt(0) || 'U'}
                           </AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="font-medium text-slate-900">{user.full_name || 'Unbekannt'}</p>
-                          <p className="text-sm text-slate-500">{user.email}</p>
+                          <p className="font-medium text-slate-900 dark:text-white">{user.full_name || 'Unbekannt'}</p>
+                          <p className="text-sm text-slate-500 dark:text-slate-400">{user.email}</p>
                         </div>
                       </div>
                     </TableCell>
@@ -228,11 +228,11 @@ export default function Users() {
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <Badge variant="outline" className={`${status.color} border`}>
+                      <Badge variant="outline" className={`${status.color} border dark:border-opacity-50`}>
                         {status.label}
                       </Badge>
                     </TableCell>
-                    <TableCell className="text-slate-500">
+                    <TableCell className="text-slate-500 dark:text-slate-400">
                       {user.created_date ? format(new Date(user.created_date), "dd. MMM yyyy", { locale: de }) : '-'}
                     </TableCell>
                     <TableCell>

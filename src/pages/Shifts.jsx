@@ -141,8 +141,8 @@ export default function Shifts() {
         className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
       >
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Schichtplan</h1>
-          <p className="text-slate-500 mt-1">Plane und verwalte Chatter-Schichten</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Schichtplan</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Plane und verwalte Chatter-Schichten</p>
         </div>
         <Button
           onClick={() => {
@@ -157,11 +157,11 @@ export default function Shifts() {
       </motion.div>
 
       {/* Week Navigation */}
-      <Card className="border-0 shadow-lg shadow-slate-200/50">
+      <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50">
         <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-              <CalendarIcon className="w-5 h-5 text-violet-600" />
+            <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+              <CalendarIcon className="w-5 h-5 text-pink-600 dark:text-pink-400" />
               {format(weekStart, "MMMM yyyy", { locale: de })}
             </CardTitle>
             <div className="flex items-center gap-2">
@@ -197,12 +197,12 @@ export default function Shifts() {
               return (
                 <div key={index} className="min-h-[200px]">
                   <div className={`text-center p-2 rounded-lg mb-2 ${
-                    isToday ? 'bg-violet-100 text-violet-700' : 'bg-slate-50'
+                    isToday ? 'bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-400' : 'bg-slate-50 dark:bg-slate-700/50'
                   }`}>
-                    <p className="text-xs font-medium uppercase">
+                    <p className={`text-xs font-medium uppercase ${isToday ? '' : 'text-slate-600 dark:text-slate-400'}`}>
                       {format(day, "EEE", { locale: de })}
                     </p>
-                    <p className={`text-lg font-bold ${isToday ? 'text-violet-700' : 'text-slate-900'}`}>
+                    <p className={`text-lg font-bold ${isToday ? 'text-pink-700 dark:text-pink-400' : 'text-slate-900 dark:text-white'}`}>
                       {format(day, "d")}
                     </p>
                   </div>

@@ -26,7 +26,7 @@ export default function ShiftCard({ shift, onClick }) {
       onClick={onClick}
       className="cursor-pointer"
     >
-      <Card className="p-4 border-0 shadow-md shadow-slate-200/50 hover:shadow-lg transition-all">
+      <Card className="p-4 border-0 shadow-md bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50 hover:shadow-lg transition-all">
         <div className="flex items-center gap-3">
           <Avatar className="w-10 h-10">
             <AvatarFallback className="bg-gradient-to-br from-blue-500 to-cyan-500 text-white text-sm font-medium">
@@ -35,10 +35,10 @@ export default function ShiftCard({ shift, onClick }) {
           </Avatar>
 
           <div className="flex-1 min-w-0">
-            <p className="font-medium text-slate-900 truncate">
+            <p className="font-medium text-slate-900 dark:text-white truncate">
               {shift.chatter_name || shift.chatter_email}
             </p>
-            <div className="flex items-center gap-2 mt-1 text-xs text-slate-500">
+            <div className="flex items-center gap-2 mt-1 text-xs text-slate-500 dark:text-slate-400">
               <Clock className="w-3 h-3" />
               <span>{shift.start_time} - {shift.end_time}</span>
             </div>
@@ -50,14 +50,14 @@ export default function ShiftCard({ shift, onClick }) {
         </div>
 
         {shift.assigned_model && (
-          <div className="mt-3 pt-3 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-500">
+          <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-700 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
             <User className="w-3 h-3" />
             <span>Model: {shift.assigned_model}</span>
           </div>
         )}
 
         {shift.notes && (
-          <p className="mt-2 text-xs text-slate-500 line-clamp-1">{shift.notes}</p>
+          <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 line-clamp-1">{shift.notes}</p>
         )}
       </Card>
     </motion.div>

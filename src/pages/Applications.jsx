@@ -74,8 +74,8 @@ export default function Applications() {
         className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
       >
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Bewerbungen</h1>
-          <p className="text-slate-500 mt-1">Verwalte eingehende Bewerbungen</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Bewerbungen</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Verwalte eingehende Bewerbungen</p>
         </div>
       </motion.div>
 
@@ -139,8 +139,8 @@ export default function Applications() {
               <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <ClipboardList className="w-8 h-8 text-slate-400" />
               </div>
-              <h3 className="text-lg font-medium text-slate-900">Keine Bewerbungen</h3>
-              <p className="text-slate-500 mt-1">Es wurden keine passenden Bewerbungen gefunden.</p>
+              <h3 className="text-lg font-medium text-slate-900 dark:text-white">Keine Bewerbungen</h3>
+              <p className="text-slate-500 dark:text-slate-400 mt-1">Es wurden keine passenden Bewerbungen gefunden.</p>
             </motion.div>
           ) : (
             filteredApplications.map(application => (

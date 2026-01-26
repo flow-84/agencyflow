@@ -97,31 +97,31 @@ export default function MyDocuments() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h1 className="text-3xl font-bold text-slate-900">Meine Dokumente</h1>
-        <p className="text-slate-500 mt-1">Verträge und wichtige Unterlagen</p>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Meine Dokumente</h1>
+        <p className="text-slate-500 dark:text-slate-400 mt-1">Verträge und wichtige Unterlagen</p>
       </motion.div>
 
       {/* Stats */}
       <div className="grid grid-cols-2 gap-4">
-        <Card className="border-0 shadow-md p-4">
+        <Card className="border-0 shadow-md bg-white dark:bg-slate-800/50 p-4">
           <div className="flex items-center gap-3">
-            <div className="p-3 rounded-xl bg-amber-100">
-              <Clock className="w-5 h-5 text-amber-600" />
+            <div className="p-3 rounded-xl bg-amber-100 dark:bg-amber-900/30">
+              <Clock className="w-5 h-5 text-amber-600 dark:text-amber-400" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-slate-900">{pendingDocs.length}</p>
-              <p className="text-sm text-slate-500">Ausstehend</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">{pendingDocs.length}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Ausstehend</p>
             </div>
           </div>
         </Card>
-        <Card className="border-0 shadow-md p-4">
+        <Card className="border-0 shadow-md bg-white dark:bg-slate-800/50 p-4">
           <div className="flex items-center gap-3">
-            <div className="p-3 rounded-xl bg-emerald-100">
-              <CheckCircle className="w-5 h-5 text-emerald-600" />
+            <div className="p-3 rounded-xl bg-emerald-100 dark:bg-emerald-900/30">
+              <CheckCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-slate-900">{signedDocs.length}</p>
-              <p className="text-sm text-slate-500">Unterschrieben</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-white">{signedDocs.length}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Unterschrieben</p>
             </div>
           </div>
         </Card>
@@ -129,10 +129,10 @@ export default function MyDocuments() {
 
       {/* Pending Documents */}
       {pendingDocs.length > 0 && (
-        <Card className="border-0 shadow-lg shadow-slate-200/50 border-l-4 border-l-amber-500">
+        <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50 border-l-4 border-l-amber-500 dark:border-l-amber-400">
           <CardHeader>
-            <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-              <AlertCircle className="w-5 h-5 text-amber-500" />
+            <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 text-amber-500 dark:text-amber-400" />
               Ausstehende Dokumente
             </CardTitle>
           </CardHeader>
@@ -144,17 +144,17 @@ export default function MyDocuments() {
                   key={doc.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 bg-amber-50 rounded-xl"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 bg-amber-50 dark:bg-amber-900/20 rounded-xl"
                 >
                   <div className="flex items-center gap-4">
                     <div className="text-3xl">{type.icon}</div>
                     <div>
-                      <h3 className="font-medium text-slate-900">{doc.title}</h3>
+                      <h3 className="font-medium text-slate-900 dark:text-white">{doc.title}</h3>
                       <div className="flex items-center gap-2 mt-1">
-                        <Badge className={`${type.color} border-0`}>
+                        <Badge className={`${type.color} border-0 dark:bg-opacity-20`}>
                           {type.label}
                         </Badge>
-                        <span className="text-xs text-slate-500">
+                        <span className="text-xs text-slate-500 dark:text-slate-400">
                           {format(new Date(doc.created_date), "dd. MMM yyyy", { locale: de })}
                         </span>
                       </div>
@@ -176,16 +176,16 @@ export default function MyDocuments() {
       )}
 
       {/* Signed Documents */}
-      <Card className="border-0 shadow-lg shadow-slate-200/50">
+      <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50">
         <CardHeader>
-          <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-            <CheckCircle className="w-5 h-5 text-emerald-500" />
+          <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+            <CheckCircle className="w-5 h-5 text-emerald-500 dark:text-emerald-400" />
             Unterschriebene Dokumente
           </CardTitle>
         </CardHeader>
         <CardContent>
           {signedDocs.length === 0 ? (
-            <p className="text-center text-slate-500 py-8">
+            <p className="text-center text-slate-500 dark:text-slate-400 py-8">
               Noch keine unterschriebenen Dokumente
             </p>
           ) : (
@@ -197,20 +197,20 @@ export default function MyDocuments() {
                     key={doc.id}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="flex items-center justify-between p-4 bg-slate-50 rounded-xl"
+                    className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
-                        <FileText className="w-5 h-5 text-emerald-600" />
+                      <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
+                        <FileText className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                       </div>
                       <div>
-                        <h3 className="font-medium text-slate-900">{doc.title}</h3>
+                        <h3 className="font-medium text-slate-900 dark:text-white">{doc.title}</h3>
                         <div className="flex items-center gap-2 mt-1">
-                          <Badge className={`${type.color} border-0`}>
+                          <Badge className={`${type.color} border-0 dark:bg-opacity-20`}>
                             {type.label}
                           </Badge>
                           {doc.signed_at && (
-                            <span className="text-xs text-emerald-600">
+                            <span className="text-xs text-emerald-600 dark:text-emerald-400">
                               Unterschrieben am {format(new Date(doc.signed_at), "dd. MMM yyyy", { locale: de })}
                             </span>
                           )}
@@ -234,11 +234,11 @@ export default function MyDocuments() {
 
       {documents.length === 0 && !isLoading && (
         <div className="text-center py-16">
-          <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <FileText className="w-8 h-8 text-slate-400" />
+          <div className="w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
+            <FileText className="w-8 h-8 text-slate-400 dark:text-slate-500" />
           </div>
-          <h3 className="text-lg font-medium text-slate-900">Keine Dokumente</h3>
-          <p className="text-slate-500 mt-1">Dir wurden noch keine Dokumente zugewiesen.</p>
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white">Keine Dokumente</h3>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Dir wurden noch keine Dokumente zugewiesen.</p>
         </div>
       )}
 

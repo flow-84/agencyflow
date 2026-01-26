@@ -28,7 +28,7 @@ export default function ModelCard({ model, onEdit, onView }) {
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="overflow-hidden border-0 shadow-lg shadow-slate-200/50 hover:shadow-xl transition-all">
+      <Card className="overflow-hidden border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50 hover:shadow-xl transition-all">
         <div className="relative h-48 bg-gradient-to-br from-violet-500 to-purple-600">
           {model.profile_image_url ? (
             <img
@@ -66,12 +66,12 @@ export default function ModelCard({ model, onEdit, onView }) {
           {model.tags && model.tags.length > 0 && (
             <div className="flex flex-wrap gap-1 mb-4">
               {model.tags.slice(0, 3).map((tag, i) => (
-                <Badge key={i} variant="outline" className="text-xs">
+                <Badge key={i} variant="outline" className="text-xs border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300">
                   {tag}
                 </Badge>
               ))}
               {model.tags.length > 3 && (
-                <Badge variant="outline" className="text-xs">
+                <Badge variant="outline" className="text-xs border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300">
                   +{model.tags.length - 3}
                 </Badge>
               )}
@@ -80,32 +80,32 @@ export default function ModelCard({ model, onEdit, onView }) {
 
           {model.onlyfans_stats && (
             <div className="grid grid-cols-3 gap-3 mb-4">
-              <div className="text-center p-2 bg-slate-50 rounded-lg">
-                <div className="flex items-center justify-center text-slate-400 mb-1">
+              <div className="text-center p-2 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                <div className="flex items-center justify-center text-slate-400 dark:text-slate-500 mb-1">
                   <Users className="w-4 h-4" />
                 </div>
-                <p className="text-sm font-semibold text-slate-900">
+                <p className="text-sm font-semibold text-slate-900 dark:text-white">
                   {model.onlyfans_stats.subscribers?.toLocaleString() || '-'}
                 </p>
-                <p className="text-xs text-slate-500">Subs</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Subs</p>
               </div>
-              <div className="text-center p-2 bg-slate-50 rounded-lg">
-                <div className="flex items-center justify-center text-slate-400 mb-1">
+              <div className="text-center p-2 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                <div className="flex items-center justify-center text-slate-400 dark:text-slate-500 mb-1">
                   <TrendingUp className="w-4 h-4" />
                 </div>
-                <p className="text-sm font-semibold text-slate-900">
+                <p className="text-sm font-semibold text-slate-900 dark:text-white">
                   ${model.onlyfans_stats.earnings?.toLocaleString() || '-'}
                 </p>
-                <p className="text-xs text-slate-500">Umsatz</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Umsatz</p>
               </div>
-              <div className="text-center p-2 bg-slate-50 rounded-lg">
-                <div className="flex items-center justify-center text-slate-400 mb-1">
+              <div className="text-center p-2 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                <div className="flex items-center justify-center text-slate-400 dark:text-slate-500 mb-1">
                   <FileText className="w-4 h-4" />
                 </div>
-                <p className="text-sm font-semibold text-slate-900">
+                <p className="text-sm font-semibold text-slate-900 dark:text-white">
                   {model.onlyfans_stats.posts || '-'}
                 </p>
-                <p className="text-xs text-slate-500">Posts</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Posts</p>
               </div>
             </div>
           )}

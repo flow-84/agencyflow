@@ -115,15 +115,15 @@ export default function MyProfile() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h1 className="text-3xl font-bold text-slate-900">Mein Profil</h1>
-        <p className="text-slate-500 mt-1">Verwalte deine Profilinformationen</p>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Mein Profil</h1>
+        <p className="text-slate-500 dark:text-slate-400 mt-1">Verwalte deine Profilinformationen</p>
       </motion.div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Profile Image */}
-        <Card className="border-0 shadow-lg shadow-slate-200/50">
+        <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50">
           <CardHeader>
-            <CardTitle className="text-lg">Profilbild</CardTitle>
+            <CardTitle className="text-lg text-slate-900 dark:text-white">Profilbild</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-6">
@@ -155,7 +155,7 @@ export default function MyProfile() {
                 </label>
               </div>
               <div className="flex-1">
-                <p className="text-sm text-slate-600">
+                <p className="text-sm text-slate-600 dark:text-slate-300">
                   Lade ein Profilbild hoch. Empfohlene Größe: 400x400px
                 </p>
                 {formData.profile_image_url && (
@@ -175,9 +175,9 @@ export default function MyProfile() {
         </Card>
 
         {/* Basic Info */}
-        <Card className="border-0 shadow-lg shadow-slate-200/50">
+        <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50">
           <CardHeader>
-            <CardTitle className="text-lg">Grundinformationen</CardTitle>
+            <CardTitle className="text-lg text-slate-900 dark:text-white">Grundinformationen</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -218,9 +218,9 @@ export default function MyProfile() {
         </Card>
 
         {/* Tags */}
-        <Card className="border-0 shadow-lg shadow-slate-200/50">
+        <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50">
           <CardHeader>
-            <CardTitle className="text-lg">Tags / Kategorien</CardTitle>
+            <CardTitle className="text-lg text-slate-900 dark:text-white">Tags / Kategorien</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex flex-wrap gap-2">
