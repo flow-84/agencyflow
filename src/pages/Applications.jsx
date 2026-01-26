@@ -105,18 +105,18 @@ export default function Applications() {
 
       {/* Status Tabs */}
       <Tabs value={statusFilter} onValueChange={setStatusFilter}>
-        <TabsList className="bg-slate-100 p-1">
-          <TabsTrigger value="all" className="data-[state=active]:bg-white">
-            Alle <Badge variant="secondary" className="ml-2 bg-slate-200">{statusCounts.all}</Badge>
+        <TabsList className="bg-slate-100 dark:bg-slate-800 p-1">
+          <TabsTrigger value="all" className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">
+            Alle <Badge variant="secondary" className="ml-2 bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200">{statusCounts.all}</Badge>
           </TabsTrigger>
-          <TabsTrigger value="pending" className="data-[state=active]:bg-white">
-            Offen <Badge variant="secondary" className="ml-2 bg-amber-100 text-amber-700">{statusCounts.pending}</Badge>
+          <TabsTrigger value="pending" className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">
+            Offen <Badge variant="secondary" className="ml-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400">{statusCounts.pending}</Badge>
           </TabsTrigger>
-          <TabsTrigger value="reviewing" className="data-[state=active]:bg-white">
-            In Prüfung <Badge variant="secondary" className="ml-2 bg-blue-100 text-blue-700">{statusCounts.reviewing}</Badge>
+          <TabsTrigger value="reviewing" className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">
+            In Prüfung <Badge variant="secondary" className="ml-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">{statusCounts.reviewing}</Badge>
           </TabsTrigger>
-          <TabsTrigger value="approved" className="data-[state=active]:bg-white">
-            Genehmigt <Badge variant="secondary" className="ml-2 bg-emerald-100 text-emerald-700">{statusCounts.approved}</Badge>
+          <TabsTrigger value="approved" className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">
+            Genehmigt <Badge variant="secondary" className="ml-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400">{statusCounts.approved}</Badge>
           </TabsTrigger>
         </TabsList>
       </Tabs>

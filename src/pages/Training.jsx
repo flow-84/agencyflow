@@ -167,9 +167,9 @@ export default function Training() {
         </div>
 
         <Tabs value={categoryFilter} onValueChange={setCategoryFilter}>
-          <TabsList className="bg-slate-100">
+          <TabsList className="bg-slate-100 dark:bg-slate-800">
             {Object.entries(categoryLabels).map(([value, label]) => (
-              <TabsTrigger key={value} value={value}>{label}</TabsTrigger>
+              <TabsTrigger key={value} value={value} className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">{label}</TabsTrigger>
             ))}
           </TabsList>
         </Tabs>

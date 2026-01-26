@@ -152,11 +152,11 @@ export default function Models() {
         </div>
 
         <Tabs value={statusFilter} onValueChange={setStatusFilter}>
-          <TabsList className="bg-slate-100">
-            <TabsTrigger value="all">Alle</TabsTrigger>
-            <TabsTrigger value="active">Aktiv</TabsTrigger>
-            <TabsTrigger value="pending">Ausstehend</TabsTrigger>
-            <TabsTrigger value="inactive">Inaktiv</TabsTrigger>
+          <TabsList className="bg-slate-100 dark:bg-slate-800">
+            <TabsTrigger value="all" className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">Alle</TabsTrigger>
+            <TabsTrigger value="active" className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">Aktiv</TabsTrigger>
+            <TabsTrigger value="pending" className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">Ausstehend</TabsTrigger>
+            <TabsTrigger value="inactive" className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">Inaktiv</TabsTrigger>
           </TabsList>
         </Tabs>
 

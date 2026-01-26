@@ -266,12 +266,12 @@ export default function AdminVideoManagement() {
       </div>
 
       <Tabs defaultValue="videos" className="space-y-6">
-        <TabsList>
-          <TabsTrigger value="videos">
+        <TabsList className="bg-slate-100 dark:bg-slate-800">
+          <TabsTrigger value="videos" className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">
             <Video className="w-4 h-4 mr-2" />
             Videos
           </TabsTrigger>
-          <TabsTrigger value="categories">
+          <TabsTrigger value="categories" className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white">
             <Folder className="w-4 h-4 mr-2" />
             Kategorien
           </TabsTrigger>
