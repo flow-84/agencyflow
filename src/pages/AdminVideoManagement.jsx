@@ -260,8 +260,8 @@ export default function AdminVideoManagement() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">VIP Video-Verwaltung</h1>
-          <p className="text-slate-500 mt-1">Verwalte Videos und Kategorien für VIP-Nutzer</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">VIP Video-Verwaltung</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Verwalte Videos und Kategorien für VIP-Nutzer</p>
         </div>
       </div>
 
@@ -278,10 +278,10 @@ export default function AdminVideoManagement() {
         </TabsList>
 
         <TabsContent value="videos" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle>Videos ({videos.length})</CardTitle>
+                <CardTitle className="text-slate-900 dark:text-white">Videos ({videos.length})</CardTitle>
                 <Button
                   onClick={() => {
                     setEditingVideo(null);
@@ -301,26 +301,26 @@ export default function AdminVideoManagement() {
                   return (
                     <div
                       key={video.id}
-                      className="flex items-center justify-between p-4 bg-slate-50 rounded-lg"
+                      className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-700/50 rounded-lg"
                     >
                       <div className="flex items-center gap-4">
-                        <div className="w-24 h-16 bg-slate-200 rounded overflow-hidden">
+                        <div className="w-24 h-16 bg-slate-200 dark:bg-slate-600 rounded overflow-hidden">
                           {video.thumbnail_url ? (
                             <img src={video.thumbnail_url} alt="" className="w-full h-full object-cover" />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center">
-                              <Video className="w-6 h-6 text-slate-400" />
+                              <Video className="w-6 h-6 text-slate-400 dark:text-slate-500" />
                             </div>
                           )}
                         </div>
                         <div>
-                          <h3 className="font-medium text-slate-900">{video.title}</h3>
+                          <h3 className="font-medium text-slate-900 dark:text-white">{video.title}</h3>
                           <div className="flex items-center gap-2 mt-1">
                             {category && (
-                              <Badge variant="secondary">{category.name}</Badge>
+                              <Badge variant="secondary" className="bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-300">{category.name}</Badge>
                             )}
                             {video.duration && (
-                              <span className="text-xs text-slate-500">{video.duration}</span>
+                              <span className="text-xs text-slate-500 dark:text-slate-400">{video.duration}</span>
                             )}
                           </div>
                         </div>
@@ -349,7 +349,7 @@ export default function AdminVideoManagement() {
                   );
                 })}
                 {videos.length === 0 && (
-                  <p className="text-center text-slate-500 py-8">Noch keine Videos vorhanden</p>
+                  <p className="text-center text-slate-500 dark:text-slate-400 py-8">Noch keine Videos vorhanden</p>
                 )}
               </div>
             </CardContent>
@@ -357,10 +357,10 @@ export default function AdminVideoManagement() {
         </TabsContent>
 
         <TabsContent value="categories" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle>Kategorien ({categories.length})</CardTitle>
+                <CardTitle className="text-slate-900 dark:text-white">Kategorien ({categories.length})</CardTitle>
                 <Button
                   onClick={() => {
                     setEditingCategory(null);
@@ -380,15 +380,15 @@ export default function AdminVideoManagement() {
                   return (
                     <div
                       key={category.id}
-                      className="flex items-center justify-between p-4 bg-slate-50 rounded-lg"
+                      className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-700/50 rounded-lg"
                     >
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-violet-100 rounded-lg flex items-center justify-center">
-                          <Folder className="w-6 h-6 text-violet-600" />
+                        <div className="w-12 h-12 bg-pink-100 dark:bg-pink-900/30 rounded-lg flex items-center justify-center">
+                          <Folder className="w-6 h-6 text-pink-600 dark:text-pink-400" />
                         </div>
                         <div>
-                          <h3 className="font-medium text-slate-900">{category.name}</h3>
-                          <p className="text-sm text-slate-500">{videoCount} Videos</p>
+                          <h3 className="font-medium text-slate-900 dark:text-white">{category.name}</h3>
+                          <p className="text-sm text-slate-500 dark:text-slate-400">{videoCount} Videos</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
@@ -415,7 +415,7 @@ export default function AdminVideoManagement() {
                   );
                 })}
                 {categories.length === 0 && (
-                  <p className="text-center text-slate-500 py-8">Noch keine Kategorien vorhanden</p>
+                  <p className="text-center text-slate-500 dark:text-slate-400 py-8">Noch keine Kategorien vorhanden</p>
                 )}
               </div>
             </CardContent>
