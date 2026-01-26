@@ -183,7 +183,7 @@ export default function Layout({ children, currentPageName }) {
           <img 
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/693030ca295a4a8076dbf6c8/18cfc3c09_AlbedoBase_XL_A_pink_star_on_a_transparent_background_inside_t_0.png" 
             alt="Model2Star" 
-            className="w-8 h-8"
+            className="w-8 h-8 object-contain"
           />
           <span className="font-bold text-slate-900 dark:text-white">Model<span className="text-pink-600 dark:text-pink-400">2</span>Star</span>
         </div>
@@ -205,7 +205,7 @@ export default function Layout({ children, currentPageName }) {
           <img 
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/693030ca295a4a8076dbf6c8/18cfc3c09_AlbedoBase_XL_A_pink_star_on_a_transparent_background_inside_t_0.png" 
             alt="Model2Star" 
-            className="w-10 h-10"
+            className="w-10 h-10 object-contain"
           />
           <div>
             <h1 className="font-bold text-slate-900 dark:text-white">Model<span className="text-pink-600 dark:text-pink-400">2</span>Star</h1>
