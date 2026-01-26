@@ -64,8 +64,8 @@ export default function Dashboard() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h1 className="text-3xl font-bold text-slate-900">Dashboard</h1>
-        <p className="text-slate-500 mt-1">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Dashboard</h1>
+        <p className="text-slate-500 dark:text-slate-400 mt-1">
           Willkommen zurück! Hier ist deine Übersicht.
         </p>
       </motion.div>
@@ -109,33 +109,33 @@ export default function Dashboard() {
         </div>
 
         {/* Quick Stats */}
-        <Card className="border-0 shadow-lg shadow-slate-200/50">
+        <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50">
           <CardHeader className="pb-4">
-            <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-violet-600" />
+            <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+              <TrendingUp className="w-5 h-5 text-pink-600 dark:text-pink-400" />
               Schnellübersicht
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
-              <span className="text-sm text-slate-600">Schulungsmaterial</span>
-              <span className="font-semibold text-slate-900">{trainings.length}</span>
+            <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+              <span className="text-sm text-slate-600 dark:text-slate-300">Schulungsmaterial</span>
+              <span className="font-semibold text-slate-900 dark:text-white">{trainings.length}</span>
             </div>
-            <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
-              <span className="text-sm text-slate-600">Genehmigte Bewerbungen</span>
-              <span className="font-semibold text-emerald-600">
+            <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+              <span className="text-sm text-slate-600 dark:text-slate-300">Genehmigte Bewerbungen</span>
+              <span className="font-semibold text-emerald-600 dark:text-emerald-400">
                 {applications.filter(a => a.status === 'approved').length}
               </span>
             </div>
-            <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
-              <span className="text-sm text-slate-600">Models mit Vertrag</span>
-              <span className="font-semibold text-slate-900">
+            <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+              <span className="text-sm text-slate-600 dark:text-slate-300">Models mit Vertrag</span>
+              <span className="font-semibold text-slate-900 dark:text-white">
                 {models.filter(m => m.contract_signed).length}
               </span>
             </div>
-            <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
-              <span className="text-sm text-slate-600">Abgeschl. Schichten</span>
-              <span className="font-semibold text-slate-900">
+            <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+              <span className="text-sm text-slate-600 dark:text-slate-300">Abgeschl. Schichten</span>
+              <span className="font-semibold text-slate-900 dark:text-white">
                 {shifts.filter(s => s.status === 'completed').length}
               </span>
             </div>
@@ -150,10 +150,10 @@ export default function Dashboard() {
         transition={{ delay: 0.3 }}
         className="mt-8"
       >
-        <Card className="border-0 shadow-lg shadow-slate-200/50">
+        <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50">
           <CardHeader className="pb-4">
-            <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-              <UserCircle className="w-5 h-5 text-violet-600" />
+            <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+              <UserCircle className="w-5 h-5 text-pink-600 dark:text-pink-400" />
               Models Galerie
             </CardTitle>
           </CardHeader>

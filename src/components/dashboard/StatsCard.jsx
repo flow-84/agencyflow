@@ -17,18 +17,18 @@ export default function StatsCard({ title, value, subtitle, icon: Icon, color, t
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="relative overflow-hidden border-0 shadow-lg shadow-slate-200/50">
+      <Card className="relative overflow-hidden border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50">
         <div className="p-4 sm:p-6">
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0 flex-1">
-              <p className="text-xs sm:text-sm font-medium text-slate-500 truncate">{title}</p>
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-1 sm:mt-2">{value}</h3>
+              <p className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 truncate">{title}</p>
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-1 sm:mt-2">{value}</h3>
               {subtitle && (
-                <p className="text-xs sm:text-sm text-slate-500 mt-1 truncate">{subtitle}</p>
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 truncate">{subtitle}</p>
               )}
               {trend && (
                 <div className={`inline-flex items-center mt-2 sm:mt-3 text-xs sm:text-sm font-medium ${
-                  trend > 0 ? 'text-emerald-600' : 'text-rose-600'
+                  trend > 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
                 }`}>
                   {trend > 0 ? '↑' : '↓'} {Math.abs(trend)}%
                 </div>
