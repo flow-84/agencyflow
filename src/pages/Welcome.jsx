@@ -58,10 +58,15 @@ export default function Welcome() {
   }, [user, isLoading]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-50 to-purple-50 flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50 dark:from-slate-950 dark:to-slate-900 flex items-center justify-center">
       <div className="text-center">
-        <Loader2 className="w-12 h-12 animate-spin text-violet-600 mx-auto mb-4" />
-        <p className="text-slate-600">Wird geladen...</p>
+        <img 
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/693030ca295a4a8076dbf6c8/18cfc3c09_AlbedoBase_XL_A_pink_star_on_a_transparent_background_inside_t_0.png"
+          alt="Model2Star"
+          className="w-24 h-24 mx-auto mb-6 object-contain animate-pulse"
+        />
+        <Loader2 className="w-12 h-12 animate-spin text-pink-600 mx-auto mb-4" />
+        <p className="text-slate-600 dark:text-slate-400">Wird geladen...</p>
       </div>
     </div>
   );

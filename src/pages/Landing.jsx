@@ -12,15 +12,16 @@ export default function Landing() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-violet-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-pink-900/30 to-slate-900">
       {/* Header */}
       <header className="border-b border-white/10 bg-black/20 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
-              <span className="text-white font-bold text-lg">A</span>
-            </div>
-            <span className="text-white font-bold text-xl">Agency Hub</span>
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/693030ca295a4a8076dbf6c8/e5d44f5c1_copilot_image_17621658834212.png" 
+              alt="Model2Star" 
+              className="h-10 w-auto object-contain"
+            />
           </div>
           <div className="flex items-center gap-4">
             <Link to={createPageUrl('PrivacyPolicy')} className="text-slate-300 hover:text-white text-sm">
@@ -29,7 +30,7 @@ export default function Landing() {
             <Link to={createPageUrl('TermsOfService')} className="text-slate-300 hover:text-white text-sm">
               AGB
             </Link>
-            <Button onClick={handleGetStarted} className="bg-violet-600 hover:bg-violet-700">
+            <Button onClick={handleGetStarted} className="bg-gradient-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800">
               Anmelden
             </Button>
           </div>
@@ -38,26 +39,37 @@ export default function Landing() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
+        <div className="absolute inset-0 opacity-40">
+          <img 
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/693030ca295a4a8076dbf6c8/d6c2be4a6_Gemini_Generated_Image_qcd35hqcd35hqcd3.jpg"
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-pink-900/80 to-slate-900/90" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 py-24 text-center">
+        <div className="relative max-w-7xl mx-auto px-6 py-32 text-center">
+          <div className="mb-8">
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/693030ca295a4a8076dbf6c8/18cfc3c09_AlbedoBase_XL_A_pink_star_on_a_transparent_background_inside_t_0.png"
+              alt="Model2Star"
+              className="w-24 h-24 mx-auto object-contain"
+            />
+          </div>
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            Professionelles Management
+            Vom Model zum Star
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">
-              für dein Team
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-600">
+              Deine Karriere-Plattform
             </span>
           </h1>
           <p className="text-xl text-slate-300 mb-12 max-w-2xl mx-auto">
-            Die All-in-One Plattform für Agenturen. Verwalte Models, Chatter, Schulungen und mehr an einem Ort.
+            Die All-in-One Management Plattform für Models und Creator. Professionell, sicher, erfolgreich.
           </p>
           <Button 
             size="lg" 
             onClick={handleGetStarted}
-            className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white px-8 py-6 text-lg shadow-xl"
+            className="bg-gradient-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800 text-white px-8 py-6 text-lg shadow-xl"
           >
             Jetzt starten
             <ArrowRight className="w-5 h-5 ml-2" />
@@ -72,10 +84,10 @@ export default function Landing() {
             Alles was du brauchst
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+            <Card className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all">
               <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-violet-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-6 h-6 text-violet-400" />
+                <div className="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-6 h-6 text-pink-400" />
                 </div>
                 <h3 className="text-white font-semibold mb-2">Team Management</h3>
                 <p className="text-slate-400 text-sm">
@@ -84,7 +96,7 @@ export default function Landing() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+            <Card className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all">
               <CardContent className="p-6 text-center">
                 <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <GraduationCap className="w-6 h-6 text-blue-400" />
@@ -96,7 +108,7 @@ export default function Landing() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+            <Card className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all">
               <CardContent className="p-6 text-center">
                 <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <FileText className="w-6 h-6 text-emerald-400" />
@@ -108,10 +120,10 @@ export default function Landing() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+            <Card className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all">
               <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-rose-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-6 h-6 text-rose-400" />
+                <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-6 h-6 text-purple-400" />
                 </div>
                 <h3 className="text-white font-semibold mb-2">Sicherheit</h3>
                 <p className="text-slate-400 text-sm">
@@ -127,9 +139,16 @@ export default function Landing() {
       <footer className="border-t border-white/10 bg-black/20 backdrop-blur-sm py-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-slate-400 text-sm">
-              © 2025 Agency Hub. Alle Rechte vorbehalten.
-            </p>
+            <div className="flex items-center gap-3">
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/693030ca295a4a8076dbf6c8/fd0792384_model2star-logo-grey.png"
+                alt="Model2Star"
+                className="h-8 w-auto object-contain opacity-60"
+              />
+              <p className="text-slate-400 text-sm">
+                © 2026 Model2Star. Alle Rechte vorbehalten.
+              </p>
+            </div>
             <div className="flex gap-6">
               <Link to={createPageUrl('PrivacyPolicy')} className="text-slate-400 hover:text-white text-sm">
                 Datenschutzerklärung
