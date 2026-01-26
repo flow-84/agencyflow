@@ -20,6 +20,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NotificationBell from "@/components/notifications/NotificationBell";
+import ThemeSwitcher from "@/components/theme/ThemeSwitcher";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -151,48 +153,63 @@ export default function Layout({ children, currentPageName }) {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <ThemeProvider>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-pink-50/30 dark:from-slate-950 dark:to-slate-900">
       <style>{`
         :root {
-          --primary: 222.2 47.4% 11.2%;
-          --primary-foreground: 210 40% 98%;
-          --accent: 262 83% 58%;
-          --accent-light: 262 83% 95%;
+          --primary: 326 100% 54%;
+          --primary-foreground: 0 0% 100%;
+          --accent: 326 100% 54%;
+          --accent-light: 326 100% 95%;
+          --brand-pink: #e946d9;
+          --brand-pink-dark: #b535a8;
+        }
+        .dark {
+          --primary: 326 100% 54%;
+          --primary-foreground: 0 0% 100%;
+          --accent: 326 100% 64%;
         }
       `}</style>
 
       {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-slate-200 z-50 flex items-center justify-between px-4">
+      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 z-50 flex items-center justify-between px-4">
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-2 rounded-lg hover:bg-slate-100 transition-colors"
+          className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
         >
-          {sidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {sidebarOpen ? <X className="w-6 h-6 text-slate-900 dark:text-white" /> : <Menu className="w-6 h-6 text-slate-900 dark:text-white" />}
         </button>
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-purple-600 flex items-center justify-center">
-            <span className="text-white font-bold text-sm">A</span>
-          </div>
-          <span className="font-semibold text-slate-900">Agency Hub</span>
+          <img 
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/693030ca295a4a8076dbf6c8/18cfc3c09_AlbedoBase_XL_A_pink_star_on_a_transparent_background_inside_t_0.png" 
+            alt="Model2Star" 
+            className="w-8 h-8"
+          />
+          <span className="font-bold text-slate-900 dark:text-white">Model<span className="text-pink-600 dark:text-pink-400">2</span>Star</span>
         </div>
-        {isAdmin && <NotificationBell />}
+        <div className="flex items-center gap-2">
+          <ThemeSwitcher />
+          {isAdmin && <NotificationBell />}
+        </div>
       </div>
 
       {/* Sidebar */}
       <aside className={`
-        fixed top-0 left-0 h-full w-64 bg-white border-r border-slate-200 z-40
+        fixed top-0 left-0 h-full w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-40
         transform transition-transform duration-300 ease-in-out
         lg:translate-x-0
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         {/* Logo */}
-        <div className="h-16 flex items-center gap-3 px-6 border-b border-slate-100">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-600 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-200">
-            <span className="text-white font-bold text-lg">A</span>
-          </div>
+        <div className="h-16 flex items-center gap-3 px-6 border-b border-slate-100 dark:border-slate-800">
+          <img 
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/693030ca295a4a8076dbf6c8/18cfc3c09_AlbedoBase_XL_A_pink_star_on_a_transparent_background_inside_t_0.png" 
+            alt="Model2Star" 
+            className="w-10 h-10"
+          />
           <div>
-            <h1 className="font-bold text-slate-900">Agency Hub</h1>
-            <p className="text-xs text-slate-500">Management Platform</p>
+            <h1 className="font-bold text-slate-900 dark:text-white">Model<span className="text-pink-600 dark:text-pink-400">2</span>Star</h1>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Management Platform</p>
           </div>
         </div>
 
@@ -208,43 +225,42 @@ export default function Layout({ children, currentPageName }) {
                 className={`
                   flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200
                   ${isActive 
-                    ? 'bg-violet-50 text-violet-700 font-medium' 
-                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                    ? 'bg-gradient-to-r from-pink-50 to-pink-100 dark:from-pink-900/30 dark:to-pink-800/30 text-pink-700 dark:text-pink-300 font-medium shadow-sm' 
+                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
                   }
                 `}
               >
-                <item.icon className={`w-5 h-5 ${isActive ? 'text-violet-600' : ''}`} />
+                <item.icon className={`w-5 h-5 ${isActive ? 'text-pink-600 dark:text-pink-400' : ''}`} />
                 <span>{item.name}</span>
               </Link>
             );
           })}
         </nav>
 
-        {/* Notifications (Desktop) */}
-        {isAdmin && (
-          <div className="px-4 pb-2">
-            <NotificationBell />
-          </div>
-        )}
+        {/* Notifications & Theme (Desktop) */}
+        <div className="px-4 pb-2 flex items-center gap-2">
+          <ThemeSwitcher />
+          {isAdmin && <NotificationBell />}
+        </div>
 
         {/* User Section */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-100 bg-white">
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors">
+              <button className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
                 <Avatar className="w-10 h-10">
                   <AvatarImage src={user?.avatar_url} />
-                  <AvatarFallback className="bg-violet-100 text-violet-700">
+                  <AvatarFallback className="bg-gradient-to-br from-pink-500 to-pink-600 text-white">
                     {user?.full_name?.charAt(0) || 'U'}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1 text-left">
-                  <p className="text-sm font-medium text-slate-900 truncate">
+                  <p className="text-sm font-medium text-slate-900 dark:text-white truncate">
                     {user?.full_name || 'Nutzer'}
                   </p>
-                  <p className="text-xs text-slate-500 capitalize">{userRole || 'Nutzer'}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 capitalize">{userRole || 'Nutzer'}</p>
                 </div>
-                <ChevronDown className="w-4 h-4 text-slate-400" />
+                <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500" />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
@@ -279,5 +295,6 @@ export default function Layout({ children, currentPageName }) {
         </div>
       </main>
     </div>
+    </ThemeProvider>
   );
 }
