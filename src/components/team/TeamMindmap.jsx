@@ -40,28 +40,28 @@ export default function TeamMindmap() {
     >
       <Card 
         className={`border-2 cursor-pointer transition-all hover:shadow-lg ${
-          type === 'admin' ? 'border-amber-300 bg-amber-50' :
-          type === 'chatter' ? 'border-blue-300 bg-blue-50' :
-          'border-pink-300 bg-pink-50'
+          type === 'admin' ? 'border-amber-300 bg-amber-50 dark:bg-amber-900/20 dark:border-amber-600' :
+          type === 'chatter' ? 'border-blue-300 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-600' :
+          'border-pink-300 bg-pink-50 dark:bg-pink-900/20 dark:border-pink-600'
         }`}
         onClick={() => setSelectedMember({ ...member, type })}
       >
         <CardContent className="p-4 text-center">
           <div className={`w-16 h-16 mx-auto mb-2 rounded-full flex items-center justify-center ${
-            type === 'admin' ? 'bg-amber-200' :
-            type === 'chatter' ? 'bg-blue-200' :
-            'bg-pink-200'
+            type === 'admin' ? 'bg-amber-200 dark:bg-amber-800' :
+            type === 'chatter' ? 'bg-blue-200 dark:bg-blue-800' :
+            'bg-pink-200 dark:bg-pink-800'
           }`}>
             {member.avatar_url ? (
               <img src={member.avatar_url} alt={member.full_name} className="w-full h-full rounded-full object-cover" />
             ) : (
-              <Icon className={`w-8 h-8 ${color}`} />
+              <Icon className={`w-8 h-8 ${color} dark:brightness-125`} />
             )}
           </div>
-          <h3 className="font-semibold text-sm truncate">{member.full_name || member.display_name}</h3>
-          <p className="text-xs text-slate-500 truncate">{member.email}</p>
+          <h3 className="font-semibold text-sm truncate text-slate-900 dark:text-white">{member.full_name || member.display_name}</h3>
+          <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{member.email}</p>
           {member.department && (
-            <Badge variant="outline" className="mt-1 text-xs">{member.department}</Badge>
+            <Badge variant="outline" className="mt-1 text-xs border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300">{member.department}</Badge>
           )}
         </CardContent>
       </Card>
@@ -73,8 +73,8 @@ export default function TeamMindmap() {
       {/* Admins */}
       <div className="space-y-3">
         <div className="flex items-center gap-2">
-          <Crown className="w-5 h-5 text-amber-600" />
-          <h2 className="text-xl font-bold text-slate-900">Administratoren</h2>
+          <Crown className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Administratoren</h2>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {admins.map(admin => (
@@ -91,13 +91,13 @@ export default function TeamMindmap() {
       {/* Chatters by Department */}
       <div className="space-y-6">
         <div className="flex items-center gap-2">
-          <MessageCircle className="w-5 h-5 text-blue-600" />
-          <h2 className="text-xl font-bold text-slate-900">Chatter</h2>
+          <MessageCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Chatter</h2>
         </div>
         
         {Object.entries(chattersByDept).map(([dept, members]) => (
           <div key={dept} className="space-y-3">
-            <h3 className="text-sm font-semibold text-slate-700 ml-2">{dept}</h3>
+            <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-2">{dept}</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {members.map(chatter => (
                 <NodeCard key={chatter.id} member={chatter} type="chatter" icon={MessageCircle} color="text-blue-600" />
@@ -108,7 +108,7 @@ export default function TeamMindmap() {
 
         {unassignedChatters.length > 0 && (
           <div className="space-y-3">
-            <h3 className="text-sm font-semibold text-slate-700 ml-2">Nicht zugewiesen</h3>
+            <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-2">Nicht zugewiesen</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {unassignedChatters.map(chatter => (
                 <NodeCard key={chatter.id} member={chatter} type="chatter" icon={MessageCircle} color="text-blue-600" />
@@ -126,8 +126,8 @@ export default function TeamMindmap() {
       {/* Models */}
       <div className="space-y-3">
         <div className="flex items-center gap-2">
-          <Camera className="w-5 h-5 text-pink-600" />
-          <h2 className="text-xl font-bold text-slate-900">Models</h2>
+          <Camera className="w-5 h-5 text-pink-600 dark:text-pink-400" />
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Models</h2>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {models.map(model => {

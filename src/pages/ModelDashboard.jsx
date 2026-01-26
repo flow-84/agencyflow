@@ -55,10 +55,10 @@ export default function ModelDashboard() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h1 className="text-3xl font-bold text-slate-900">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
           Willkommen, {profile?.display_name || user?.full_name?.split(' ')[0] || 'Model'}! ✨
         </h1>
-        <p className="text-slate-500 mt-1">
+        <p className="text-slate-500 dark:text-slate-400 mt-1">
           Dein persönliches Dashboard
         </p>
       </motion.div>
@@ -118,10 +118,10 @@ export default function ModelDashboard() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.1 }}
         >
-          <Card className="border-0 shadow-lg shadow-slate-200/50 h-full">
+          <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50 h-full">
             <CardHeader className="pb-4">
-              <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-                <UserCircle className="w-5 h-5 text-violet-600" />
+              <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                <UserCircle className="w-5 h-5 text-pink-600 dark:text-pink-400" />
                 Profil-Vollständigkeit
               </CardTitle>
             </CardHeader>
@@ -149,38 +149,38 @@ export default function ModelDashboard() {
                     />
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-3xl font-bold text-slate-900">{profileCompleteness()}%</span>
+                    <span className="text-3xl font-bold text-slate-900 dark:text-white">{profileCompleteness()}%</span>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                  <span className="text-sm">Künstlername</span>
+                <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                  <span className="text-sm text-slate-900 dark:text-white">Künstlername</span>
                   {profile?.display_name ? (
                     <CheckCircle className="w-5 h-5 text-emerald-500" />
                   ) : (
                     <AlertCircle className="w-5 h-5 text-amber-500" />
                   )}
                 </div>
-                <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                  <span className="text-sm">Biografie</span>
+                <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                  <span className="text-sm text-slate-900 dark:text-white">Biografie</span>
                   {profile?.bio ? (
-                    <CheckCircle className="w-5 h-5 text-emerald-500" />
+                    <CheckCircle className="w-5 h-5 text-emerald-500 dark:text-emerald-400" />
                   ) : (
-                    <AlertCircle className="w-5 h-5 text-amber-500" />
+                    <AlertCircle className="w-5 h-5 text-amber-500 dark:text-amber-400" />
                   )}
                 </div>
-                <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                  <span className="text-sm">Profilbild</span>
+                <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                  <span className="text-sm text-slate-900 dark:text-white">Profilbild</span>
                   {profile?.profile_image_url ? (
-                    <CheckCircle className="w-5 h-5 text-emerald-500" />
+                    <CheckCircle className="w-5 h-5 text-emerald-500 dark:text-emerald-400" />
                   ) : (
-                    <AlertCircle className="w-5 h-5 text-amber-500" />
+                    <AlertCircle className="w-5 h-5 text-amber-500 dark:text-amber-400" />
                   )}
                 </div>
-                <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                    <span className="text-sm">Vertrag unterschrieben</span>
+                <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                    <span className="text-sm text-slate-900 dark:text-white">Vertrag unterschrieben</span>
                     {(profile?.contract_signed || hasSignedContract) ? (
                       <CheckCircle className="w-5 h-5 text-emerald-500" />
                     ) : (
@@ -198,11 +198,11 @@ export default function ModelDashboard() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <Card className="border-0 shadow-lg shadow-slate-200/50 h-full">
+          <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50 h-full">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-                  <FileText className="w-5 h-5 text-blue-600" />
+                <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   Meine Dokumente
                 </CardTitle>
                 <Link to={createPageUrl("MyDocuments")}>
@@ -215,13 +215,13 @@ export default function ModelDashboard() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-4 bg-emerald-50 rounded-xl">
-                  <p className="text-3xl font-bold text-emerald-600">{signedDocs}</p>
-                  <p className="text-sm text-slate-500">Unterschrieben</p>
+                <div className="text-center p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl">
+                  <p className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">{signedDocs}</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">Unterschrieben</p>
                 </div>
-                <div className="text-center p-4 bg-amber-50 rounded-xl">
-                  <p className="text-3xl font-bold text-amber-600">{pendingDocs}</p>
-                  <p className="text-sm text-slate-500">Ausstehend</p>
+                <div className="text-center p-4 bg-amber-50 dark:bg-amber-900/20 rounded-xl">
+                  <p className="text-3xl font-bold text-amber-600 dark:text-amber-400">{pendingDocs}</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">Ausstehend</p>
                 </div>
               </div>
 
@@ -236,13 +236,13 @@ export default function ModelDashboard() {
               {documents.slice(0, 3).map(doc => (
                 <div
                   key={doc.id}
-                  className="flex items-center justify-between p-3 bg-slate-50 rounded-lg"
+                  className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-slate-200 rounded flex items-center justify-center">
-                      <FileText className="w-4 h-4 text-slate-500" />
+                    <div className="w-8 h-8 bg-slate-200 dark:bg-slate-600 rounded flex items-center justify-center">
+                      <FileText className="w-4 h-4 text-slate-500 dark:text-slate-300" />
                     </div>
-                    <span className="text-sm font-medium truncate max-w-[150px]">{doc.title}</span>
+                    <span className="text-sm font-medium text-slate-900 dark:text-white truncate max-w-[150px]">{doc.title}</span>
                   </div>
                   {doc.is_signed ? (
                     <Badge className="bg-emerald-100 text-emerald-700 border-0">✓</Badge>
@@ -263,35 +263,35 @@ export default function ModelDashboard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          <Card className="border-0 shadow-lg shadow-slate-200/50">
+          <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50">
             <CardHeader>
-              <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-pink-600" />
+              <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-pink-600 dark:text-pink-400" />
                 OnlyFans Statistiken
               </CardTitle>
             </CardHeader>
             <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-                  <div className="text-center p-3 sm:p-4 bg-pink-50 rounded-xl">
-                    <Users className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600 mx-auto mb-2" />
-                    <p className="text-xl sm:text-2xl font-bold text-slate-900">
+                  <div className="text-center p-3 sm:p-4 bg-pink-50 dark:bg-pink-900/20 rounded-xl">
+                    <Users className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600 dark:text-pink-400 mx-auto mb-2" />
+                    <p className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
                       {profile.onlyfans_stats.subscribers?.toLocaleString() || '-'}
                     </p>
-                    <p className="text-xs sm:text-sm text-slate-500">Abonnenten</p>
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Abonnenten</p>
                   </div>
-                  <div className="text-center p-3 sm:p-4 bg-emerald-50 rounded-xl">
-                    <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 mx-auto mb-2" />
-                    <p className="text-xl sm:text-2xl font-bold text-slate-900">
+                  <div className="text-center p-3 sm:p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl">
+                    <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 dark:text-emerald-400 mx-auto mb-2" />
+                    <p className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
                       ${profile.onlyfans_stats.earnings?.toLocaleString() || '-'}
                     </p>
-                    <p className="text-xs sm:text-sm text-slate-500">Umsatz</p>
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Umsatz</p>
                   </div>
-                  <div className="text-center p-3 sm:p-4 bg-violet-50 rounded-xl">
-                    <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-violet-600 mx-auto mb-2" />
-                    <p className="text-xl sm:text-2xl font-bold text-slate-900">
+                  <div className="text-center p-3 sm:p-4 bg-violet-50 dark:bg-violet-900/20 rounded-xl">
+                    <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-violet-600 dark:text-violet-400 mx-auto mb-2" />
+                    <p className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
                       {profile.onlyfans_stats.posts || '-'}
                     </p>
-                    <p className="text-xs sm:text-sm text-slate-500">Posts</p>
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Posts</p>
                   </div>
                 </div>
               </CardContent>
@@ -300,10 +300,10 @@ export default function ModelDashboard() {
         )}
 
         {/* Team Map */}
-        <Card className="border-0 shadow-lg shadow-slate-200/50">
+        <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50">
         <CardHeader>
-          <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-            <Network className="w-5 h-5 text-violet-600" />
+          <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+            <Network className="w-5 h-5 text-pink-600 dark:text-pink-400" />
             Team Übersicht
           </CardTitle>
         </CardHeader>

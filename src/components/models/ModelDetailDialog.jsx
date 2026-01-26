@@ -19,7 +19,7 @@ export default function ModelDetailDialog({ model, open, onClose }) {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-white dark:bg-slate-900">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3">
             {model.profile_image_url ? (
@@ -29,14 +29,14 @@ export default function ModelDetailDialog({ model, open, onClose }) {
                 className="w-12 h-12 rounded-full object-cover"
               />
             ) : (
-              <div className="w-12 h-12 rounded-full bg-violet-100 flex items-center justify-center">
-                <UserCircle className="w-6 h-6 text-violet-600" />
+              <div className="w-12 h-12 rounded-full bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center">
+                <UserCircle className="w-6 h-6 text-pink-600 dark:text-pink-400" />
               </div>
             )}
             <div>
-              <div className="text-xl font-bold">{model.display_name}</div>
+              <div className="text-xl font-bold text-slate-900 dark:text-white">{model.display_name}</div>
               {model.onlyfans_username && (
-                <div className="text-sm text-slate-500">@{model.onlyfans_username}</div>
+                <div className="text-sm text-slate-500 dark:text-slate-400">@{model.onlyfans_username}</div>
               )}
             </div>
           </DialogTitle>
@@ -45,7 +45,7 @@ export default function ModelDetailDialog({ model, open, onClose }) {
         <div className="space-y-6 mt-4">
           {/* Status */}
           <div className="flex items-center gap-2">
-            <span className="text-sm text-slate-600">Status:</span>
+            <span className="text-sm text-slate-600 dark:text-slate-300">Status:</span>
             <Badge className={
               model.status === 'active' ? 'bg-emerald-500' :
               model.status === 'inactive' ? 'bg-slate-500' : 'bg-amber-500'
@@ -57,8 +57,8 @@ export default function ModelDetailDialog({ model, open, onClose }) {
 
           {/* Links */}
           <div className="space-y-2">
-            <h3 className="font-semibold text-slate-900 flex items-center gap-2">
-              <ExternalLink className="w-4 h-4" />
+            <h3 className="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+              <ExternalLink className="w-4 h-4 text-slate-900 dark:text-white" />
               Social Links
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -92,18 +92,18 @@ export default function ModelDetailDialog({ model, open, onClose }) {
           {/* Bio */}
           {model.bio && (
             <div className="space-y-2">
-              <h3 className="font-semibold text-slate-900 flex items-center gap-2">
+              <h3 className="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
                 <FileText className="w-4 h-4" />
                 Biografie
               </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">{model.bio}</p>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{model.bio}</p>
             </div>
           )}
 
           {/* Skills */}
           {model.skills && model.skills.length > 0 && (
             <div className="space-y-2">
-              <h3 className="font-semibold text-slate-900">Fähigkeiten</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-white">Fähigkeiten</h3>
               <div className="flex flex-wrap gap-2">
                 {model.skills.map((skill, idx) => (
                   <Badge key={idx} variant="outline" className="text-sm">
@@ -117,36 +117,36 @@ export default function ModelDetailDialog({ model, open, onClose }) {
           {/* OnlyFans Stats */}
           {model.onlyfans_stats && (
             <div className="space-y-2">
-              <h3 className="font-semibold text-slate-900 flex items-center gap-2">
+              <h3 className="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
                 <TrendingUp className="w-4 h-4" />
                 OnlyFans Statistiken
               </h3>
               <div className="grid grid-cols-3 gap-4">
                 {model.onlyfans_stats.subscribers && (
-                  <div className="text-center p-3 bg-pink-50 rounded-xl">
-                    <Users className="w-5 h-5 text-pink-600 mx-auto mb-1" />
-                    <p className="text-xl font-bold text-slate-900">
+                  <div className="text-center p-3 bg-pink-50 dark:bg-pink-900/20 rounded-xl">
+                    <Users className="w-5 h-5 text-pink-600 dark:text-pink-400 mx-auto mb-1" />
+                    <p className="text-xl font-bold text-slate-900 dark:text-white">
                       {model.onlyfans_stats.subscribers.toLocaleString()}
                     </p>
-                    <p className="text-xs text-slate-500">Abonnenten</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Abonnenten</p>
                   </div>
                 )}
                 {model.onlyfans_stats.earnings && (
-                  <div className="text-center p-3 bg-emerald-50 rounded-xl">
-                    <TrendingUp className="w-5 h-5 text-emerald-600 mx-auto mb-1" />
-                    <p className="text-xl font-bold text-slate-900">
+                  <div className="text-center p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl">
+                    <TrendingUp className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mx-auto mb-1" />
+                    <p className="text-xl font-bold text-slate-900 dark:text-white">
                       ${model.onlyfans_stats.earnings.toLocaleString()}
                     </p>
-                    <p className="text-xs text-slate-500">Umsatz</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Umsatz</p>
                   </div>
                 )}
                 {model.onlyfans_stats.posts && (
-                  <div className="text-center p-3 bg-violet-50 rounded-xl">
-                    <FileText className="w-5 h-5 text-violet-600 mx-auto mb-1" />
-                    <p className="text-xl font-bold text-slate-900">
+                  <div className="text-center p-3 bg-violet-50 dark:bg-violet-900/20 rounded-xl">
+                    <FileText className="w-5 h-5 text-violet-600 dark:text-violet-400 mx-auto mb-1" />
+                    <p className="text-xl font-bold text-slate-900 dark:text-white">
                       {model.onlyfans_stats.posts}
                     </p>
-                    <p className="text-xs text-slate-500">Posts</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Posts</p>
                   </div>
                 )}
               </div>
@@ -156,7 +156,7 @@ export default function ModelDetailDialog({ model, open, onClose }) {
           {/* Tags */}
           {model.tags && model.tags.length > 0 && (
             <div className="space-y-2">
-              <h3 className="font-semibold text-slate-900">Kategorien</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-white">Kategorien</h3>
               <div className="flex flex-wrap gap-2">
                 {model.tags.map((tag, idx) => (
                   <Badge key={idx} className="bg-violet-100 text-violet-700">
@@ -170,7 +170,7 @@ export default function ModelDetailDialog({ model, open, onClose }) {
           {/* Gallery */}
           {model.gallery_urls && model.gallery_urls.length > 0 && (
             <div className="space-y-2">
-              <h3 className="font-semibold text-slate-900">Galerie</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-white">Galerie</h3>
               <div className="grid grid-cols-3 gap-2">
                 {model.gallery_urls.map((url, idx) => (
                   <img

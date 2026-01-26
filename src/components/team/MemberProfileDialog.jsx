@@ -84,13 +84,13 @@ export default function MemberProfileDialog({ member, open, onClose }) {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-white dark:bg-slate-900">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3">
             <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-              member.type === 'admin' ? 'bg-amber-100' :
-              member.type === 'chatter' ? 'bg-blue-100' :
-              'bg-pink-100'
+              member.type === 'admin' ? 'bg-amber-100 dark:bg-amber-900/30' :
+              member.type === 'chatter' ? 'bg-blue-100 dark:bg-blue-900/30' :
+              'bg-pink-100 dark:bg-pink-900/30'
             }`}>
               {(member.avatar_url || member.profile_image_url) ? (
                 <img
@@ -103,11 +103,11 @@ export default function MemberProfileDialog({ member, open, onClose }) {
               )}
             </div>
             <div>
-              <div className="text-xl font-bold">{member.full_name || member.display_name}</div>
+              <div className="text-xl font-bold text-slate-900 dark:text-white">{member.full_name || member.display_name}</div>
               <Badge className={
-                member.type === 'admin' ? 'bg-amber-100 text-amber-700' :
-                member.type === 'chatter' ? 'bg-blue-100 text-blue-700' :
-                'bg-pink-100 text-pink-700'
+                member.type === 'admin' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300' :
+                member.type === 'chatter' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' :
+                'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300'
               }>
                 {member.type === 'admin' ? 'Administrator' :
                  member.type === 'chatter' ? 'Chatter' : 'Model'}
@@ -119,12 +119,12 @@ export default function MemberProfileDialog({ member, open, onClose }) {
         <div className="space-y-6 mt-4">
           {/* Contact Info */}
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-sm text-slate-600">
+            <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
               <Mail className="w-4 h-4" />
               <span>{member.email || member.user_email}</span>
             </div>
             {member.phone && (
-              <div className="flex items-center gap-2 text-sm text-slate-600">
+              <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
                 <Phone className="w-4 h-4" />
                 <span>{member.phone}</span>
               </div>
@@ -134,14 +134,14 @@ export default function MemberProfileDialog({ member, open, onClose }) {
           {/* Department/Status */}
           {member.department && (
             <div>
-              <span className="text-sm text-slate-600">Abteilung: </span>
+              <span className="text-sm text-slate-600 dark:text-slate-300">Abteilung: </span>
               <Badge variant="outline">{member.department}</Badge>
             </div>
           )}
 
           {member.status && (
             <div>
-              <span className="text-sm text-slate-600">Status: </span>
+              <span className="text-sm text-slate-600 dark:text-slate-300">Status: </span>
               <Badge className={
                 member.status === 'active' ? 'bg-emerald-500' :
                 member.status === 'inactive' ? 'bg-slate-500' : 'bg-amber-500'
@@ -155,15 +155,15 @@ export default function MemberProfileDialog({ member, open, onClose }) {
           {/* Bio (for models) */}
           {member.bio && (
             <div className="space-y-2">
-              <h3 className="font-semibold text-slate-900">Biografie</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">{member.bio}</p>
+              <h3 className="font-semibold text-slate-900 dark:text-white">Biografie</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{member.bio}</p>
             </div>
           )}
 
           {/* Skills */}
           {member.skills && member.skills.length > 0 && (
             <div className="space-y-2">
-              <h3 className="font-semibold text-slate-900">Fähigkeiten</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-white">Fähigkeiten</h3>
               <div className="flex flex-wrap gap-2">
                 {member.skills.map((skill, idx) => (
                   <Badge key={idx} variant="outline" className="text-sm">
@@ -175,8 +175,8 @@ export default function MemberProfileDialog({ member, open, onClose }) {
           )}
 
           {/* Contact/Mention Actions */}
-          <div className="space-y-3 pt-4 border-t">
-            <h3 className="font-semibold text-slate-900">Kontakt</h3>
+          <div className="space-y-3 pt-4 border-t border-slate-200 dark:border-slate-700">
+            <h3 className="font-semibold text-slate-900 dark:text-white">Kontakt</h3>
             
             <div className="space-y-2">
               <Textarea

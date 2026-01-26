@@ -37,21 +37,21 @@ export default function VIPDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 p-6">
       <div className="max-w-7xl mx-auto space-y-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-purple-600 rounded-full text-white mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full text-white mb-4">
             <Sparkles className="w-5 h-5" />
             <span className="font-semibold">VIP Bereich</span>
           </div>
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">
+          <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-2">
             Exklusive Video-Inhalte
           </h1>
-          <p className="text-slate-600">
+          <p className="text-slate-600 dark:text-slate-400">
             Willkommen im VIP-Bereich. Genieße unsere exklusiven Videos.
           </p>
         </motion.div>
@@ -59,10 +59,10 @@ export default function VIPDashboard() {
         {categories.length === 0 ? (
           <div className="text-center py-16">
             <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Play className="w-10 h-10 text-slate-400" />
+              <Play className="w-10 h-10 text-slate-400 dark:text-slate-500" />
             </div>
-            <h3 className="text-lg font-medium text-slate-900">Keine Videos verfügbar</h3>
-            <p className="text-slate-500 mt-1">Aktuell sind keine Videos vorhanden.</p>
+            <h3 className="text-lg font-medium text-slate-900 dark:text-white">Keine Videos verfügbar</h3>
+            <p className="text-slate-500 dark:text-slate-400 mt-1">Aktuell sind keine Videos vorhanden.</p>
           </div>
         ) : (
           categories.map((category, idx) => {
@@ -76,13 +76,13 @@ export default function VIPDashboard() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
               >
-                <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm">
+                <Card className="border-0 shadow-xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
                   <CardHeader>
-                    <CardTitle className="text-2xl font-bold text-slate-900">
+                    <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">
                       {category.name}
                     </CardTitle>
                     {category.description && (
-                      <p className="text-slate-600 mt-1">{category.description}</p>
+                      <p className="text-slate-600 dark:text-slate-400 mt-1">{category.description}</p>
                     )}
                   </CardHeader>
                   <CardContent>
@@ -119,12 +119,12 @@ export default function VIPDashboard() {
                                 </Badge>
                               )}
                             </div>
-                            <CardContent className="p-4">
-                              <h3 className="font-semibold text-slate-900 line-clamp-2">
+                            <CardContent className="p-4 bg-white dark:bg-slate-800">
+                              <h3 className="font-semibold text-slate-900 dark:text-white line-clamp-2">
                                 {video.title}
                               </h3>
                               {video.description && (
-                                <p className="text-sm text-slate-600 mt-1 line-clamp-2">
+                                <p className="text-sm text-slate-600 dark:text-slate-300 mt-1 line-clamp-2">
                                   {video.description}
                                 </p>
                               )}
@@ -165,10 +165,10 @@ export default function VIPDashboard() {
       </Dialog>
 
       {/* Team Map */}
-      <Card className="border-0 shadow-lg shadow-slate-200/50">
+      <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50">
         <CardHeader>
-          <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-            <Network className="w-5 h-5 text-violet-600" />
+          <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+            <Network className="w-5 h-5 text-pink-600 dark:text-pink-400" />
             Team Übersicht
           </CardTitle>
         </CardHeader>

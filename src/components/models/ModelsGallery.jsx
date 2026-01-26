@@ -110,19 +110,19 @@ export default function ModelsGallery() {
                 </div>
 
                 {/* Model Info */}
-                <div className="p-4">
-                  <h3 className="font-semibold text-slate-900 truncate">
+                <div className="p-4 bg-white dark:bg-slate-800">
+                  <h3 className="font-semibold text-slate-900 dark:text-white truncate">
                     {model.display_name}
                   </h3>
                   {model.onlyfans_username && (
-                    <p className="text-sm text-slate-500 truncate">
+                    <p className="text-sm text-slate-500 dark:text-slate-400 truncate">
                       @{model.onlyfans_username}
                     </p>
                   )}
                   
                   {/* Stats */}
                   {model.onlyfans_stats?.subscribers && (
-                    <div className="mt-2 text-xs text-slate-600">
+                    <div className="mt-2 text-xs text-slate-600 dark:text-slate-300">
                       <span className="font-semibold">
                         {model.onlyfans_stats.subscribers.toLocaleString()}
                       </span> Abonnenten
@@ -152,7 +152,7 @@ export default function ModelsGallery() {
       </div>
 
       {filteredModels.length === 0 && (
-        <div className="text-center py-12 text-slate-500">
+        <div className="text-center py-12 text-slate-500 dark:text-slate-400">
           Keine Models gefunden
         </div>
       )}

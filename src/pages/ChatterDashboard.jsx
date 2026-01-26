@@ -67,10 +67,10 @@ export default function ChatterDashboard() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h1 className="text-3xl font-bold text-slate-900">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
           Hallo, {user?.full_name?.split(' ')[0] || 'Chatter'}! 👋
         </h1>
-        <p className="text-slate-500 mt-1">
+        <p className="text-slate-500 dark:text-slate-400 mt-1">
           Hier ist deine persönliche Übersicht
         </p>
       </motion.div>
@@ -114,11 +114,11 @@ export default function ChatterDashboard() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.1 }}
         >
-          <Card className="border-0 shadow-lg shadow-slate-200/50 h-full">
+          <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50 h-full">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-                  <Calendar className="w-5 h-5 text-violet-600" />
+                <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                  <Calendar className="w-5 h-5 text-pink-600 dark:text-pink-400" />
                   Kommende Schichten
                 </CardTitle>
                 <Link to={createPageUrl("MyShifts")}>
@@ -131,20 +131,20 @@ export default function ChatterDashboard() {
             </CardHeader>
             <CardContent className="space-y-3">
               {upcomingShifts.length === 0 ? (
-                <p className="text-center text-slate-500 py-8">
+                <p className="text-center text-slate-500 dark:text-slate-400 py-8">
                   Keine anstehenden Schichten
                 </p>
               ) : (
                 upcomingShifts.map(shift => (
                   <div
                     key={shift.id}
-                    className="flex items-center justify-between p-4 bg-slate-50 rounded-xl"
+                    className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl"
                   >
                     <div>
-                      <p className="font-medium text-slate-900">
+                      <p className="font-medium text-slate-900 dark:text-white">
                         {getDateLabel(shift.date)}
                       </p>
-                      <p className="text-sm text-slate-500">
+                      <p className="text-sm text-slate-500 dark:text-slate-400">
                         {shift.start_time} - {shift.end_time}
                       </p>
                     </div>
@@ -166,11 +166,11 @@ export default function ChatterDashboard() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <Card className="border-0 shadow-lg shadow-slate-200/50 h-full">
+          <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50 h-full">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-                  <GraduationCap className="w-5 h-5 text-emerald-600" />
+                <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                  <GraduationCap className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   Schulungsfortschritt
                 </CardTitle>
                 <Link to={createPageUrl("MyTraining")}>
@@ -206,20 +206,20 @@ export default function ChatterDashboard() {
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
-                      <span className="text-3xl font-bold text-slate-900">{trainingPercent}%</span>
+                      <span className="text-3xl font-bold text-slate-900 dark:text-white">{trainingPercent}%</span>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                <div className="text-center p-2 sm:p-3 bg-emerald-50 rounded-xl">
-                  <p className="text-xl sm:text-2xl font-bold text-emerald-600">{completedTrainings}</p>
-                  <p className="text-xs text-slate-500">Abgeschlossen</p>
+                <div className="text-center p-2 sm:p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl">
+                  <p className="text-xl sm:text-2xl font-bold text-emerald-600 dark:text-emerald-400">{completedTrainings}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Abgeschlossen</p>
                 </div>
-                <div className="text-center p-2 sm:p-3 bg-slate-50 rounded-xl">
-                  <p className="text-xl sm:text-2xl font-bold text-slate-900">{totalTrainings - completedTrainings}</p>
-                  <p className="text-xs text-slate-500">Ausstehend</p>
+                <div className="text-center p-2 sm:p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+                  <p className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">{totalTrainings - completedTrainings}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Ausstehend</p>
                 </div>
               </div>
 
@@ -242,11 +242,11 @@ export default function ChatterDashboard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          <Card className="border-0 shadow-md p-4 text-center">
-            <p className="text-2xl font-bold text-slate-900">
+          <Card className="border-0 shadow-md bg-white dark:bg-slate-800/50 p-4 text-center">
+            <p className="text-2xl font-bold text-slate-900 dark:text-white">
               {shifts.filter(s => s.status === 'completed').length}
             </p>
-            <p className="text-xs text-slate-500">Abgeschl. Schichten</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Abgeschl. Schichten</p>
           </Card>
         </motion.div>
         <motion.div
@@ -254,9 +254,9 @@ export default function ChatterDashboard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <Card className="border-0 shadow-md p-4 text-center">
-            <p className="text-2xl font-bold text-slate-900">{upcomingShifts.length}</p>
-            <p className="text-xs text-slate-500">Anstehend</p>
+          <Card className="border-0 shadow-md bg-white dark:bg-slate-800/50 p-4 text-center">
+            <p className="text-2xl font-bold text-slate-900 dark:text-white">{upcomingShifts.length}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Anstehend</p>
           </Card>
         </motion.div>
         <motion.div
@@ -264,9 +264,9 @@ export default function ChatterDashboard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          <Card className="border-0 shadow-md p-4 text-center">
-            <p className="text-2xl font-bold text-emerald-600">{completedTrainings}</p>
-            <p className="text-xs text-slate-500">Schulungen ✓</p>
+          <Card className="border-0 shadow-md bg-white dark:bg-slate-800/50 p-4 text-center">
+            <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{completedTrainings}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Schulungen ✓</p>
           </Card>
         </motion.div>
         <motion.div
@@ -274,9 +274,9 @@ export default function ChatterDashboard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
         >
-          <Card className="border-0 shadow-md p-4 text-center">
-            <p className="text-2xl font-bold text-violet-600">{trainingPercent}%</p>
-            <p className="text-xs text-slate-500">Fortschritt</p>
+          <Card className="border-0 shadow-md bg-white dark:bg-slate-800/50 p-4 text-center">
+            <p className="text-2xl font-bold text-pink-600 dark:text-pink-400">{trainingPercent}%</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Fortschritt</p>
           </Card>
         </motion.div>
         </div>
@@ -288,10 +288,10 @@ export default function ChatterDashboard() {
         transition={{ delay: 0.7 }}
         className="mt-8"
         >
-        <Card className="border-0 shadow-lg shadow-slate-200/50">
+        <Card className="border-0 shadow-lg bg-white dark:bg-slate-800/50 dark:shadow-slate-900/50">
           <CardHeader className="pb-4">
-            <CardTitle className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-              <UserCircle className="w-5 h-5 text-violet-600" />
+            <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+              <UserCircle className="w-5 h-5 text-pink-600 dark:text-pink-400" />
               Models Galerie
             </CardTitle>
           </CardHeader>
